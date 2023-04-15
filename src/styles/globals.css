@@ -67,6 +67,7 @@ svg {
 input,
 textarea {
   -webkit-user-select: auto;
+  user-select: auto;
   outline-color: transparent;
   border: 0;
 }
@@ -109,6 +110,7 @@ body {
   --clr-light: #fbfbff;
 
   font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .student_pages {
@@ -117,7 +119,45 @@ body {
   overflow: hidden;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto auto;
   align-items: center;
   padding: 20px;
+  gap: 20px;
+}
+.student_main {
+  height: 100%;
+  width: 65rem;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-primary-300) #eee;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: #eee;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--clr-primary-400);
+  border-radius: 5px;
+}
+@media(max-width: 768px) {
+  .student_pages {
+    grid-auto-flow: column;
+    grid-template-rows: auto auto auto;
+    overflow: scroll;
+    gap: 0;
+    padding-bottom: 80px;
+  }
+  .student_main{
+    height: 37rem;
+    width: 100%;
+    margin: 20px 0;
+  }
 }

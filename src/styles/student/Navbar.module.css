@@ -4,8 +4,15 @@
   height: 100%;
   border-radius: 7px;
   padding: 7px;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: repeat(4, auto);
+  align-content: center;
+  justify-content: space-around;
 }
 .nav_logo {
+  height: fit-content;
+  width: fit-content;
   display: grid;
   justify-content: center;
   color: var(--clr-light);
@@ -22,7 +29,7 @@
 .sidebar {
   background-color: var(--clr-primary-400);
   color: var(--clr-light);
-  width: 300px;
+  width: 350px;
   height: 100%;
   border-radius: 7px;
   display: grid;
@@ -47,9 +54,43 @@
   line-height: 1.5rem;
   font-weight: 500;
   text-align: center;
+  user-select: none;
 }
 .sidebar_section span {
   font-size: 5rem;
   font-weight: 400;
   line-height: 5rem;
+  user-select: none;
+}
+@media(max-width:968px){
+  .nav{
+    height: 60px;
+    width: 100%;
+    padding: 0px;
+    grid-auto-flow: column;
+    grid-template-rows: none;
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-around;
+  }
+  .nav_logo{
+    margin: 0;
+    padding: 8px;
+  }
+  .sidebar{
+    width: 100%;
+    height: 350px;
+  }
+  .sidebar_section{
+    padding: 0;
+  }
+  .sidebar_section p {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.15rem;
+  }
+  .sidebar_section span {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3rem;
+  }
 }
