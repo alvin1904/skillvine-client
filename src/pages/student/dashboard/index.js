@@ -1,7 +1,6 @@
-import React from 'react'
+import StudentLayout from "@/layouts/StudentLayout";
+import React from "react";
 
 export default function dashboard() {
-  return (
-    <div>dashboard</div>
-  )
+  return <StudentLayout>dashboard</StudentLayout>;
 }

@@ -1,7 +1,6 @@
-import React from 'react'
+import StudentLayout from "@/layouts/StudentLayout";
+import React from "react";
 
 export default function certificates() {
-  return (
-    <div>certificates</div>
-  )
+  return <StudentLayout>certificates</StudentLayout>;
 }

@@ -1,7 +1,8 @@
+import StudentLayout from '@/layouts/StudentLayout'
 import React from 'react'
 
 export default function editCertificates() {
   return (
-    <div>editCertificates</div>
+    <StudentLayout>editCertificates</StudentLayout>
   )
 }

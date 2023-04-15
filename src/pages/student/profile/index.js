@@ -1,7 +1,10 @@
-import React from 'react'
+import StudentLayout from "@/layouts/StudentLayout";
+import React from "react";
 
 export default function profile() {
   return (
-    <div>profile</div>
-  )
+    <StudentLayout>
+      <div>profile</div>
+    </StudentLayout>
+  );
 }
