@@ -126,7 +126,7 @@ body {
 }
 .student_main {
   height: 100%;
-  width: 65rem;
+  width: 63vw;
   padding: 8px;
   border-radius: 8px;
   background-color: var(--clr-light);
