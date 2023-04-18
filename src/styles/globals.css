@@ -102,9 +102,10 @@ body {
 
 *,
 :root {
-  --clr-primary-200: #adf5ff;
-  --clr-primary-400: #db5461;
+  --clr-primary-100: #c8f3ff;
+  --clr-primary-200: #11c3f4;
   --clr-primary-300: #ffa8b0;
+  --clr-primary-400: #db5461;
   --clr-primary-600: #21a179;
   --clr-dark: #17255a;
   --clr-light: #fbfbff;
@@ -126,7 +127,7 @@ body {
 }
 .student_main {
   height: 100%;
-  width: 63vw;
+  width: 65rem;
   padding: 8px;
   border-radius: 8px;
   background-color: var(--clr-light);
@@ -147,7 +148,7 @@ body {
   background-color: var(--clr-primary-400);
   border-radius: 5px;
 }
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .student_pages {
     grid-auto-flow: column;
     grid-template-rows: auto auto auto;
@@ -155,9 +156,85 @@ body {
     gap: 0;
     padding-bottom: 80px;
   }
-  .student_main{
+  .student_main {
     height: 37rem;
     width: 100%;
     margin: 20px 0;
   }
+}
+
+/* FOLDER SELECTION */
+.folder {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+}
+.folderSelected {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+}
+.folder p,
+.folder div {
+  font-size: 0.85rem;
+  padding: 0px 5px;
+  user-select: none;
+}
+.folderSelected div {
+  border-radius: 5px 5px 0px 0px;
+  background-color: var(--clr-primary-200);
+}
+.folderSelected p {
+  border-radius: 5px 5px 5px 5px;
+  background-color: var(--clr-primary-200);
+}
+
+/* LOADING */
+.loader_occupier {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  height: 30px;
+  width: 30px;
+  border: 3px solid var(--clr-primary-200);
+  border-radius: 50%;
+  -webkit-animation: spin 1.7s ease infinite; /* Safari */
+  animation: sviwel 1.7s ease infinite;
+  animation: spin 1.7s ease infinite;
+}
+@keyframes sviwel {
+  0% {
+    transform: rotate(0deg) rotateY(360deg);
+  }
+  50% {
+    transform: rotate(180deg) rotateX(0deg);
+  }
+  100% {
+    transform: rotate(360deg) rotateY(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    border-bottom: 3px solid transparent;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-bottom: 3px solid transparent;
+  }
+}
+.centrify{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+  text-align: center;
+  padding: 0px 35px;
 }

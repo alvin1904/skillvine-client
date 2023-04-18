@@ -11,3 +11,8 @@ export const studentNavbar = [
   { icon: MdLibraryAdd, page: "/student/certificates/add" },
   { icon: MdContacts, page: "/student/profile" },
 ];
+
+export const SelectMode = {
+  BATCH: "batch",
+  STUDENT: "student",
+};
