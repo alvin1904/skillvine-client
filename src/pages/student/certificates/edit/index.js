@@ -1,8 +1,13 @@
-import StudentLayout from '@/layouts/StudentLayout'
-import React from 'react'
+import EditCertificateForm from "@/componentsUser/EditCertificateForm";
+import StudentLayout from "@/layouts/StudentLayout";
+import React from "react";
 
 export default function editCertificates() {
   return (
-    <StudentLayout>editCertificates</StudentLayout>
-  )
+    <StudentLayout>
+      <div className="certificate_change_container">
+        <EditCertificateForm />
+      </div>
+    </StudentLayout>
+  );
 }
