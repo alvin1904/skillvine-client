@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import DropDown from './DropDown'
 
-export default function Rightadd() {
+export default function RightAdd() {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);

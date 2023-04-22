@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Leftadd() {
+export default function LeftAdd() {
   return (
     <div className='LeftAdd'> 
       <div className="Event_name">
@@ -27,7 +27,6 @@ export default function Leftadd() {
         <label htmlFor="event_desc">Event Description:</label>
         <textarea className="event_desc" name="event_desc"/><br/><br/>
       </div>
-
     </div>
   )
 }
