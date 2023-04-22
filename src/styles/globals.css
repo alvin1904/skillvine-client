@@ -314,3 +314,10 @@ body {
   display: block;
   opacity: 1;
 }
+
+/* ADD CERTIFICATES */
+.add_certificate {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}

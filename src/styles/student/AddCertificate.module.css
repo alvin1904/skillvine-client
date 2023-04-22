@@ -1,0 +1,18 @@
+.submit_certificate {
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+  padding: 0.5em 0em;
+  display: grid;
+  grid-auto-flow: column;
+  font-size: 0.95em;
+}
+@media (max-width: 768px) {
+  .submit_certificate {
+    grid-auto-flow: row;
+  }
+}
+.LeftAdd>div>input{
+  border: 1px var(--clr-primary-400) solid;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
