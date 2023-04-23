@@ -27,6 +27,11 @@
     z-index: 100;
     transition: 0.4s cubic-bezier(0, 1.28, 1, 0.98);
   }
+  @media (max-width:768px) {
+    .error_handler_1904 {
+      max-width: 300px;
+    }
+  }
   .show1904 {
     transform: translateY(20px);
   }

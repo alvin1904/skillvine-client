@@ -34,9 +34,10 @@ export default function Home() {
       <main className="main">
         Check if login, else redirect to /login
         <br></br>
-        {links.map((link) => {
+        {links.map((link, index) => {
           return (
             <button
+              key={index}
               className="btn"
               onClick={() => {
                 goToLink(link.link);

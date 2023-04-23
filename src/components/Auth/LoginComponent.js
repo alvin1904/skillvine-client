@@ -7,20 +7,24 @@ import { loginOptions } from "@/constants/data";
 
 export default function LoginComponent() {
   const { throwError } = useCustomError();
-  const ref1 = useRef(null);
+  const ref = useRef(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginOptions.toString().replace(",", "") == ref1.current.innerText)
+    if (loginOptions.toString().replace(",", "") == ref.current.innerText)
       return throwError("Select an option!", status.WARNING);
-    alert(ref1.current.innerText);
+    if (ref.current.innerText === loginOptions[0])
+      window.location.href = process.env.NEXT_PUBLIC_STUDENT_LOGIN;
+    else if (ref.current.innerText === loginOptions[1])
+      window.location.href = process.env.NEXT_PUBLIC_TEACHER_LOGIN;
   };
+
   return (
     <form className={styles.login_card} onSubmit={handleSubmit}>
       <div className={styles.login_card_header}>Login</div>
       <DropDown
         array={loginOptions}
         defaultText="Select login mode"
-        ulRef={ref1}
+        ulRef={ref}
       />
       <button type="submit" className={styles.login_btn}>
         <div className={styles.login_btn_section}>

@@ -22,7 +22,7 @@ export default function RegisterComponent() {
       return false;
     }
     if (batchStart.current.value.length !== 4) {
-      throwError("Batch Start must be 4 digits long", status.WARNING);
+      throwError("Batch must be 4 digits long", status.WARNING);
       return false;
     }
     return true;

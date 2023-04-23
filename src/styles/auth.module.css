@@ -15,11 +15,6 @@
   border-radius: 10px;
   padding: 20px;
 }
-@media (max-width: 768px) {
-  .login_card {
-    width: 90%;
-  }
-}
 .login_card_header {
   font-size: 1.2rem;
 }
@@ -42,9 +37,9 @@
   background-color: var(--clr-light);
   color: var(--clr-primary-400);
   border: 1px solid var(--clr-primary-300);
-  padding: 5px 25px;
-  margin: 5px 0px;
   border-radius: 8px;
+  min-width: 100%;
+  min-height: 50px;
   transition: 250ms all ease;
 }
 .login_btn:hover {
@@ -53,4 +48,12 @@
 }
 .login_btn:hover > .login_btn_section > svg > path {
   fill: white;
+}
+@media (max-width: 768px) {
+  .login_card {
+    width: 90%;
+  }
+  .login_input_batch {
+    width: 18%;
+  }
 }
