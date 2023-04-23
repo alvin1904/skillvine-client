@@ -1,12 +1,12 @@
-import EditCertificateForm from "@/componentsUser/EditCertificateForm";
+import EditCertificate from "@/componentsUser/certificate/EditCertificate";
 import StudentLayout from "@/layouts/StudentLayout";
 import React from "react";
 
 export default function editCertificates() {
   return (
     <StudentLayout>
-      <div className="certificate_change_container">
-        <EditCertificateForm />
+      <div className="add_certificate">
+        <EditCertificate />
       </div>
     </StudentLayout>
   );
