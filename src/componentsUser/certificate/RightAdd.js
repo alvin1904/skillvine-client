@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import DropDown from "./DropDown";
 import styles from "@/styles/student/AddCertificate.module.css";
+import DropDown from "@/components/DropDown";
 
 export default function RightAdd() {
   const ref1 = useRef(null);

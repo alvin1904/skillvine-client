@@ -19,6 +19,10 @@ export default function Home() {
       text: "Login",
       link: "/login",
     },
+    {
+      text: "Register details",
+      link: "/register/details",
+    },
   ];
   return (
     <>

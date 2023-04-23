@@ -1,9 +1,13 @@
-"use client"
+"use client";
 
-import React from 'react'
+import React from "react";
+import RegisterComponent from "@/components/Auth/RegisterComponent";
+import styles from "@/styles/auth.module.css";
 
 export default function details() {
   return (
-    <div>register</div>
-  )
+    <div className={styles.login_bg}>
+      <RegisterComponent />
+    </div>
+  );
 }

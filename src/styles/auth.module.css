@@ -11,7 +11,46 @@
   background-color: var(--clr-light);
   box-shadow: var(--clr-primary-300) 0px 0px 5px;
   height: 70%;
-  width: 28%;
+  width: 30%;
   border-radius: 10px;
   padding: 20px;
+}
+@media (max-width: 768px) {
+  .login_card {
+    width: 90%;
+  }
+}
+.login_card_header {
+  font-size: 1.2rem;
+}
+.login_input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid var(--clr-primary-300);
+  border-radius: 5px;
+}
+.login_input_batch {
+  width: 16%;
+  padding: 5px;
+  border: 1px solid var(--clr-primary-300);
+  border-radius: 5px;
+}
+.login_detail_collect > div > input:nth-child(2) {
+  width: 12%;
+}
+.login_btn {
+  background-color: var(--clr-light);
+  color: var(--clr-primary-400);
+  border: 1px solid var(--clr-primary-300);
+  padding: 5px 25px;
+  margin: 5px 0px;
+  border-radius: 8px;
+  transition: 250ms all ease;
+}
+.login_btn:hover {
+  color: var(--clr-light);
+  background-color: var(--clr-primary-400);
+}
+.login_btn:hover > .login_btn_section > svg > path {
+  fill: white;
 }
