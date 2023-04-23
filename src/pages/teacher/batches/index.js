@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import styles from "@/styles/teacher/Selector.module.css";
 import Folders from "@/componentsAdmin/BatchSelect/Folders";

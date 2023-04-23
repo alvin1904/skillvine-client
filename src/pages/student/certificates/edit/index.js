@@ -1,3 +1,5 @@
+"use client"
+
 import EditCertificate from "@/componentsUser/certificate/EditCertificate";
 import StudentLayout from "@/layouts/StudentLayout";
 import React from "react";

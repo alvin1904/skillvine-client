@@ -1,3 +1,5 @@
+"use client"
+
 import StudentLayout from "@/layouts/StudentLayout";
 import React from "react";
 

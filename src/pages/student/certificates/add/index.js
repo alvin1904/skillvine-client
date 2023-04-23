@@ -1,3 +1,4 @@
+"use client"
 
 import AddCertificate from "@/componentsUser/certificate/AddCertificate";
 import StudentLayout from "@/layouts/StudentLayout";
