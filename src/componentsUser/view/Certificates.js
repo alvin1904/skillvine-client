@@ -1,10 +1,17 @@
 import React from "react";
-import styles from "@/styles/student/ViewCertificates.module.css";
+import styles from "@/styles/student/CertificateList.module.css";
 
-export default function Certificates() {
+export default function Certificates({ children }) {
   return (
-    <div>
-      Certificate List
+    <div className={styles.certificateList}>
+      <div className={styles.certificateList__header}>
+        <h1 className={styles.certificateList__title}>Name</h1>
+        <h1 className={styles.certificateList__title}>Date</h1>
+        <h1 className={styles.certificateList__title}>Activity</h1>
+        <h1 className={styles.certificateList__title}>Level</h1>
+      </div>
+      <br></br>
+      <div className={styles.certificateList__body}>{children}</div>
     </div>
   );
 }

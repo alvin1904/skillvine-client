@@ -19,5 +19,15 @@ export const SelectMode = {
   STUDENT: "student",
 };
 
+export const levels = [
+  "Level 1",
+  "Level 2",
+  "Level 3",
+  "Level 4",
+  "Level 5",
+  "Core-Coordinator",
+  "Sub-Coordinator",
+  "Volunteer",
+];
 // LOGIN PAGE
 export const loginOptions = ["Login as a student", "Login as a teacher"];
