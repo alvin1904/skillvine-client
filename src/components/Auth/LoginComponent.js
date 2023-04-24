@@ -33,7 +33,7 @@ export default function LoginComponent() {
         <div className={styles.login_btn_section}>
           Login with Institution Email
         </div>
-      </button>
+      </button> 
     </form>
   );
 }
