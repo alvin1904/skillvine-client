@@ -53,5 +53,18 @@
 }
 .addC_filters {
   height: 75px;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: repeat(5, auto);
+}
+@media (max-width: 768px) {
+  .addC_filters {
+    height: 270px;
+    grid-auto-flow: row;
+    grid-template-columns: none;
+    grid-template-rows: repeat(5, auto);
+    justify-items: center;
+    gap: 0rem;
+  }
+  .filter_btn {
+    width: 60%;
+  }
 }

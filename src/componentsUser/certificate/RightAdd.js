@@ -6,6 +6,7 @@ export default function RightAdd() {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const pdfRef = useRef(null);
   const array1 = [
     "National Initiatives Participation",
     "Sports & Games",
@@ -28,17 +29,23 @@ export default function RightAdd() {
       <DropDown array={array3} defaultText="Select level" ulRef={ref3} />
 
       <div className={styles.fileUploader}>
-        <label>Certificate File:</label>
+        <label
+          onClick={() => {
+            pdfRef.current.click();
+          }}
+        >
+          Upload certificate file
+        </label>
         <input
           type="file"
           className={styles.fileUpload}
           accept=".jpg, .jpeg, .png, application/pdf"
+          ref={pdfRef}
         />
       </div>
-
-      <div className={styles.submitBtn}>
-        <input type="submit" value="Add Certificate" />
-      </div>
+      <button type="submit" className={styles.submitBtn}>
+        Upload the certificate
+      </button>
     </div>
   );
 }

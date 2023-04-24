@@ -6,13 +6,105 @@
   grid-auto-flow: column;
   font-size: 0.95em;
 }
+.LeftAdd > div > input,
+.LeftAdd > div > textarea,
+.date_issued,
+.end_date {
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+  border: 1px var(--clr-primary-400) solid;
+  border-radius: 0.5em;
+  resize: none;
+  height: 40px;
+  padding: 5px 10px;
+}
+.LeftAdd > div > textarea {
+  height: 120px;
+}
+.LeftAdd > div > input::placeholder,
+.LeftAdd > div > textarea::placeholder {
+  opacity: 0.5;
+  text-align: left;
+}
+.LeftAdd {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 10px;
+}
+.eventName,
+.dateStart,
+.duration,
+.dateEnd,
+.eventDescription {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 100px 320px;
+  align-items: center;
+  text-align: end;
+  gap: 10px;
+}
+
 @media (max-width: 768px) {
   .submit_certificate {
     grid-auto-flow: row;
   }
+  .date_issued,
+  .end_date {
+    width: 100%;
+  }
+  .eventName,
+  .dateStart,
+  .duration,
+  .dateEnd,
+  .eventDescription {
+    grid-template-columns: 85px 230px;
+  }
+  .LeftAdd > div > textarea {
+    height: 75px;
+  }
 }
-.LeftAdd>div>input{
-  border: 1px var(--clr-primary-400) solid;
-  padding: 0.5em;
+
+.RightAdd {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 10px;
+  justify-items: center;
+}
+.fileUploader {
+  width: 90%;
+  padding: 15px;
+  text-align: center;
+  border: 1px var(--clr-primary-400) dashed;
   border-radius: 0.5em;
+  display: grid;
+  justify-content: center;
+  gap: 5px;
+}
+.submitBtn {
+  width: 90%;
+  padding: 15px;
+  text-align: center;
+  border: 1px var(--clr-primary-400) dashed;
+  border-radius: 0.5em;
+  display: grid;
+  justify-content: center;
+  gap: 5px;
+  transition: all 150ms ease-in-out;
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-top: 1rem;
+}
+.submitBtn:hover {
+  background-color: var(--clr-primary-400);
+  color: var(--clr-light);
+  font-weight: 400;
+}
+@media (max-width: 768px) {
+  .RightAdd {
+    margin-top: 1rem;
+  }
+  .submitBtn {
+    margin-top: 0.25rem;
+  }
 }

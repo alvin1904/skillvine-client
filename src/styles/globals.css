@@ -307,6 +307,11 @@ body {
   display: block;
   opacity: 1;
 }
+@media (max-width: 768px) {
+  .select {
+    margin: 0px;
+  }
+}
 
 /* ADD CERTIFICATES */
 .add_certificate {
