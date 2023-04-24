@@ -28,7 +28,7 @@ export default function LoginComponent() {
       />
       <button type="submit" className={styles.login_btn}>
         <div className={styles.login_btn_section}>
-          <FcGoogle />
+          <FcGoogle size={25} />
         </div>
         <div className={styles.login_btn_section}>
           Login with Institution Email

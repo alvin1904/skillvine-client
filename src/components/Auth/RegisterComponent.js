@@ -44,7 +44,7 @@ export default function RegisterComponent() {
     const data = finalizeData();
   };
   return (
-    <form className={styles.login_card} onSubmit={handleSubmit}>
+    <form className={`${styles.login_card} ${styles.register_card}`} onSubmit={handleSubmit}>
       <div className={styles.login_card_header}>
         Fill the details to proceed:
       </div>

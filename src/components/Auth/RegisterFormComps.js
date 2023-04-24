@@ -34,7 +34,7 @@ export default function RegisterFormComps({
           value={"Rajiv Gandhi Institute of Technology, Kottayam"}
           readOnly
         />
-        <div className={styles.login_detail_collect}>
+        <div className={styles.login_detail_collect_batch}>
           <label>Batch:</label>
           <div>
             <input
