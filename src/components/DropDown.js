@@ -9,7 +9,7 @@ export default function DropDown({ array, defaultText, ulRef }) {
     setSelected(false);
   };
   return (
-    <div className="dropdown">
+    <div className="dropdown 1904">
       <div
         className={`select ${selected ? "select-clicked" : ""}`}
         onClick={handleSelect}
