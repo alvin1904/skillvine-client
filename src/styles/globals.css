@@ -232,6 +232,7 @@ body {
   width: 250px;
   /* width: ; */
   position: relative;
+  user-select: none;
 }
 .select {
   display: flex;
@@ -245,7 +246,6 @@ body {
   margin: 10px 0px;
   cursor: pointer;
   transition: 100ms;
-  
 }
 .select-clicked {
   box-shadow: 0 0 0.8 var(--clr-dark);
@@ -253,6 +253,9 @@ body {
 .select:hover {
   background-color: var(--clr-primary-400);
   color: var(--clr-light);
+}
+.select:hover .caret {
+  border-top-color: var(--clr-light);
 }
 .caret {
   width: 0;

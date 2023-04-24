@@ -10,7 +10,7 @@ export default function LoginComponent() {
   const ref = useRef(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginOptions.toString().replace(",", "") == ref.current.innerText)
+    if (loginOptions.toString().replace(/,/g, "") == ref.current.innerText)
       return throwError("Select an option!", status.WARNING);
     if (ref.current.innerText === loginOptions[0])
       window.location.href = process.env.NEXT_PUBLIC_STUDENT_LOGIN;
@@ -33,7 +33,7 @@ export default function LoginComponent() {
         <div className={styles.login_btn_section}>
           Login with Institution Email
         </div>
-      </button> 
+      </button>
     </form>
   );
 }

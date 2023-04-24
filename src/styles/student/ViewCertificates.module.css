@@ -1,0 +1,56 @@
+.addC_section {
+  background-color: var(--clr-light);
+  box-shadow: 0 0 2px 0 var(--clr-primary-300);
+  border: 1px solid transparent;
+  height: 60px;
+  padding: 0px 20px;
+  border-radius: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  transition: all 100ms ease-in-out;
+}
+.addC_section:hover {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0);
+  border: 1px solid var(--clr-primary-400);
+}
+.addC_input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--clr-light);
+  border-radius: 5px;
+  outline: none;
+}
+.addC_input::placeholder,
+.addC_icon {
+  opacity: 0.5;
+}
+.addC_icon {
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+.addC_icon:hover {
+  color: var(--clr-primary-400);
+}
+.addC_button {
+  all: unset;
+}
+.filter_btn {
+  background-color: var(--clr-light);
+  box-shadow: 0 0 2px 0 var(--clr-primary-300);
+  border: 1px solid var(--clr-primary-400);
+  height: 40px;
+  border-radius: 8px;
+  transition: all 100ms ease-in-out;
+}
+.filter_btn:hover {
+  background-color: var(--clr-primary-400);
+  color: var(--clr-light);
+}
+.addC_filters {
+  height: 75px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
