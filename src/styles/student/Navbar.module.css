@@ -71,6 +71,7 @@
     grid-template-rows: none;
     grid-template-columns: repeat(4, auto);
     justify-content: space-around;
+    border-radius: 0;
   }
   .nav_logo{
     margin: 0;

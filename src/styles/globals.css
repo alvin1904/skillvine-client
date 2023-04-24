@@ -108,7 +108,7 @@ body {
   --clr-primary-400: #db5461;
   --clr-primary-600: #21a179;
   --clr-dark: #17255a;
-  --clr-light: #fbfbff;
+  --clr-light: #fffdfd;
 
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
@@ -148,20 +148,7 @@ body {
   background-color: var(--clr-primary-400);
   border-radius: 5px;
 }
-@media (max-width: 768px) {
-  .student_pages {
-    grid-auto-flow: column;
-    grid-template-rows: auto auto auto;
-    overflow: scroll;
-    gap: 0;
-    padding-bottom: 80px;
-  }
-  .student_main {
-    height: 37rem;
-    width: 100%;
-    margin: 20px 0;
-  }
-}
+/* MOBILE VIEWS DOWN */
 
 /* FOLDER SELECTION */
 .folder {
@@ -320,4 +307,21 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .student_pages {
+    grid-auto-flow: column;
+    grid-template-rows: auto auto auto;
+    overflow: scroll;
+    gap: 0;
+    padding: 0;
+    padding-bottom: 50px;
+  }
+  .student_main {
+    height: 40rem;
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 40px;
+  }
 }
