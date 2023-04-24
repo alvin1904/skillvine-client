@@ -29,5 +29,20 @@ export const levels = [
   "Sub-Coordinator",
   "Volunteer",
 ];
+
+export const certificateStatus = {
+  PENDING: {
+    color: "var(--clr-light)",
+    border: "var(--clr-primary-400)",
+  },
+  APPROVED: {
+    color: "var(--clr-primary-800)",
+    border: "var(--clr-primary-800)",
+  },
+  REJECTED: {
+    color: "var(--clr-primary-300)",
+    border: "var(--clr-primary-300)",
+  },
+};
 // LOGIN PAGE
 export const loginOptions = ["Login as a student", "Login as a teacher"];

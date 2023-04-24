@@ -47,6 +47,7 @@ export default function certificates() {
                             : certificate.level
                         }
                         isLeadership={certificate.isLeadership}
+                        status={certificate.status}
                       />
                     ))}
                   </div>

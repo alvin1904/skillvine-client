@@ -10,7 +10,6 @@ export default function Certificates({ children }) {
         <h1 className={styles.certificateList__title}>Activity</h1>
         <h1 className={styles.certificateList__title}>Level</h1>
       </div>
-      <br></br>
       <div className={styles.certificateList__body}>{children}</div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/styles/student/CertificateList.module.css";
-import { levels } from "@/constants/data";
+import { certificateStatus, levels } from "@/constants/data";
+import { useRouter } from "next/router";
 
 export default function EachCertificate({
   id,
@@ -9,10 +10,20 @@ export default function EachCertificate({
   activity,
   level,
   isLeadership,
+  status,
 }) {
-  console.log(id);
+  const router = useRouter();
+  const goToDetails = () => {
+    router.push(`/student/certificates/${id}`);
+  };
   return (
-    <div className={styles.certificate__content}>
+    <div
+      className={styles.certificate__content}
+      onClick={goToDetails}
+      style={{
+        backgroundColor: certificateStatus[`${status.toUpperCase()}`]?.color,
+      }}
+    >
       <h1 className={styles.certificate__value}>{name}</h1>
       <h1 className={styles.certificate__value}>{date}</h1>
       <h1 className={styles.certificate__value}>{activity}</h1>

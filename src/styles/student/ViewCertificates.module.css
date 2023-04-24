@@ -55,6 +55,27 @@
   height: 75px;
   grid-template-columns: repeat(5, auto);
 }
+.indicators {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  gap: 50px;
+  user-select: none;
+}
+.indicator {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  width: max-content;
+}
+.color_indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 5px;
+}
 @media (max-width: 768px) {
   .addC_filters {
     height: 270px;
@@ -66,5 +87,8 @@
   }
   .filter_btn {
     width: 60%;
+  }
+  .indicators{
+    gap: 30px
   }
 }
