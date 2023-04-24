@@ -246,6 +246,9 @@ body {
   margin: 10px 0px;
   cursor: pointer;
   transition: 100ms;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .select-clicked {
   box-shadow: 0 0 0.8 var(--clr-dark);

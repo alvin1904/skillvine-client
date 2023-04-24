@@ -43,6 +43,7 @@
   box-shadow: 0 0 2px 0 var(--clr-primary-300);
   border: 1px solid var(--clr-primary-400);
   height: 40px;
+  width: 100px;
   border-radius: 8px;
   transition: all 100ms ease-in-out;
 }
@@ -52,5 +53,5 @@
 }
 .addC_filters {
   height: 75px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto auto auto;
 }

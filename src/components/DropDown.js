@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-export default function DropDown({ array, defaultText, ulRef }) {
+export default function DropDown({
+  array,
+  defaultText,
+  ulRef,
+  clearSelection,
+}) {
   const [optionSelected, setOptionSelected] = useState(defaultText);
   const [selected, setSelected] = useState(false);
   const handleSelect = () => setSelected(!selected);
@@ -8,6 +13,15 @@ export default function DropDown({ array, defaultText, ulRef }) {
     setOptionSelected(op);
     setSelected(false);
   };
+  const clear = () => {
+    setOptionSelected(defaultText);
+    setSelected(false);
+  };
+
+  useEffect(() => {
+    clear();
+  }, [clearSelection]);
+
   return (
     <div className="dropdown 1904">
       <div
