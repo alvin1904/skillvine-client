@@ -1,15 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/student/Dashboard.module.css";
 import Loadings from "@/components/Loading/Loadings";
-import NothingFound from "@/components/Loading/NothingFound";
 import EachNotification from "./EachNotification";
 import NoNotifications from "./NoNotifications";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { getNotificationsAPI } from "@/apis";
+import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
 export default function NotificationCentre() {
   const [notifications, setNotifications] = useState([]);
-  const loading = false;
-  const clearNotifications = () => {
-    setNotifications([]);
+
+  const { throwError } = useCustomError();
+  const { loading, fetchData } = useAxiosCaller();
+  useEffect(() => {
+    const getNotification = async () => {
+      const response = await fetchData(getNotificationsAPI);
+      if ([200, 304].includes(response.status) && response.data)
+        setNotifications(response.data);
+      else if (response.status === 401) console.log("Token not present");
+      else throwError(response.status);
+    };
+    getNotification();
+  }, []);
+
+  const clearNotifications = async () => {
+    if (notifications.length === 0)
+      return throwError("No notifications to clear!", status.INFO);
+    const response = await fetchData(getNotificationsAPI);
+    if ([200, 304].includes(response.status) && response.data)
+      setNotifications([]);
+    else if (response.status === 401) console.log("Token not present");
+    else throwError(response.status);
   };
   return (
     <>
@@ -19,10 +40,12 @@ export default function NotificationCentre() {
         ) : (
           notifications &&
           (notifications.length === 0 ? (
-            <NoNotifications back={false} />
+            <NoNotifications />
           ) : (
             notifications.map((notification, index) => (
-              <EachNotification key={index}>{notification}</EachNotification>
+              <EachNotification key={index}>
+                {notification?.message}
+              </EachNotification>
             ))
           ))
         )}

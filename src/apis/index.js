@@ -20,12 +20,20 @@ export const setHead = (token) => {
   api2.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
+// INDEX
 export const apiLive = () => api.get("/");
 export const updateUserAPI = (data) =>
   api.patch("/users/students", data, { withCredentials: true });
 export const verifyToken = () =>
   api.get("/auth/students/get-access-token", { withCredentials: true });
 
+// NOTIFICATIONS
+export const getNotificationsAPI = () =>
+  api.get("/students/notifications", { withCredentials: true });
+export const deleteNotificationsAPI = () =>
+  api.delete("/students/notifications", { withCredentials: true });
+
+// INTERCEPTOR
 let refresh = false;
 api.interceptors.response.use(
   (res) => res,
