@@ -3,7 +3,6 @@ import styles from "@/styles/student/ViewCertificates.module.css";
 import { certificateStatus } from "@/constants/data";
 
 export default function Indicators() {
-  console.log(Object.keys(certificateStatus));
   return (
     <>
       <div className={styles.indicators}>

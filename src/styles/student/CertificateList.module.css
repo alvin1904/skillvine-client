@@ -7,7 +7,7 @@
   height: 40px;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 5fr 3fr 3fr 2fr auto;
+  grid-template-columns: 5fr 3fr 5fr 2fr auto;
   justify-content: space-between;
   align-items: center;
   text-align: center;
@@ -60,7 +60,7 @@
 }
 @media (max-width: 768px) {
   .certificateList__header {
-    grid-template-columns: 5fr 3fr 3fr 2fr auto;
+    grid-template-columns: 4fr 3fr 3fr 2fr auto;
   }
   .certificate__content {
     border: 1px solid var(--clr-primary-300);

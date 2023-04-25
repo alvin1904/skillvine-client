@@ -3,6 +3,7 @@ import styles from "@/styles/student/CertificateList.module.css";
 import { certCompStatus, certificateStatus, levels } from "@/constants/data";
 import { useRouter } from "next/router";
 import { MdEditDocument, MdDelete, MdAssessment } from "react-icons/md";
+import { takeFirstNCharacters } from "@/utils/getRandomNumber";
 
 export default function EachCertificate({
   id,
@@ -34,7 +35,7 @@ export default function EachCertificate({
         {name}
       </h1>
       <h1 className={styles.certificate__value} onClick={goToDetails}>
-        {date}
+        {takeFirstNCharacters(date, 10)}
       </h1>
       <h1 className={styles.certificate__value} onClick={goToDetails}>
         {activity}

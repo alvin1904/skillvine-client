@@ -39,7 +39,7 @@ export default function AddCertificate({ data = {} }) {
       const response = await fetchData(getCategoryAPI);
       console.log(response.data);
       if (response.status === 200) setCategoryData(response.data);
-      else throwError(response.data.status);
+      else throwError(response?.data?.status);
     }, [fetchData, getCategoryAPI, throwError]);
 
     useEffect(() => {

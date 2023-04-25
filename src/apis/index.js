@@ -39,6 +39,8 @@ export const deleteNotificationsAPI = () =>
 // CERTIFICATES
 export const uploadCertificateAPI = (formdata) =>
   api2.post("/students/certificates", formdata, { withCredentials: true });
+export const getCertificatesAPI = () =>
+  api.get("/students/certificates", { withCredentials: true });
 
 // INTERCEPTOR
 let refresh = false;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import StudentLayout from "@/layouts/StudentLayout";
 import styles from "@/styles/student/CertificateList.module.css";
 import Loadings from "@/components/Loading/Loadings";
@@ -11,10 +11,30 @@ import Filters from "@/components/viewCertificates/Filters";
 import Indicators from "@/components/viewCertificates/Indicators";
 import EachCertificate from "@/components/viewCertificates/EachCertificate";
 import { certCompStatus } from "@/constants/data";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { getCertificatesAPI } from "@/apis";
+import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
 export default function certificates() {
   const [certificates, setCertificates] = useState({});
-  const loading = false;
+  const [seedCheck, setSeedCheck] = useState(0);
+
+  const { loading, fetchData } = useAxiosCaller();
+  const { throwError } = useCustomError();
+
+  const getCertificatesList = useCallback(async () => {
+    setSeedCheck(seedCheck + 1);
+    const response = await fetchData(getCertificatesAPI);
+    console.log(response);
+    if (response.status === 200) setCertificates(response.data);
+    else throwError(response?.data?.status);
+  }, [fetchData]);
+
+  useEffect(() => {
+    if (Object.keys(certificates).length === 0 && seedCheck < 3)
+      getCertificatesList();
+  }, [certificates, getCertificatesList]);
+
   return (
     <StudentLayout>
       <div className="add_certificate">
@@ -40,8 +60,8 @@ export default function certificates() {
                         key={certificate._id}
                         id={certificate._id}
                         name={certificate.certificateName}
-                        date={certificate.createdAt}
-                        activity={certificate.category.activity}
+                        date={certificate.participationDate}
+                        activity={certificate?.category?.activity || ""}
                         level={
                           certificate.isLeadership
                             ? certificate.leadershipLevel
