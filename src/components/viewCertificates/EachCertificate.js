@@ -4,6 +4,9 @@ import { certCompStatus, certificateStatus, levels } from "@/constants/data";
 import { useRouter } from "next/router";
 import { MdEditDocument, MdDelete, MdAssessment } from "react-icons/md";
 import { takeFirstNCharacters } from "@/utils/getRandomNumber";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { deleteCertificatesAPI } from "@/apis";
+import { status, useCustomError } from "../ErrorHandler/ErrorContext";
 
 export default function EachCertificate({
   id,
@@ -12,10 +15,12 @@ export default function EachCertificate({
   activity,
   level,
   isLeadership,
-  status,
+  statuse,
   use,
 }) {
   const router = useRouter();
+  const { loading, fetchData } = useAxiosCaller();
+  const { throwError } = useCustomError();
   const Icon = use === certCompStatus.MARK ? MdAssessment : MdEditDocument;
   const baseLink =
     use === certCompStatus.MARK
@@ -23,12 +28,17 @@ export default function EachCertificate({
       : "/student/certificates/edit/";
   const goToDetails = () => router.push(`/student/certificates/${id}`);
   const handleEdit = () => router.push(baseLink + id);
-  const handleDelete = () => router.push("/student/certificates/delete/" + id);
+  const handleDelete = async () => {
+    const response = await fetchData(deleteCertificatesAPI, id);
+    if (response && response.status === 200)
+      throwError("Certificate deleted successfully!", status.SUCCESS);
+    else throwError(response?.response?.status);
+  };
   return (
     <div
       className={styles.certificate__content}
       style={{
-        backgroundColor: certificateStatus[`${status.toUpperCase()}`]?.color,
+        backgroundColor: certificateStatus[`${statuse.toUpperCase()}`]?.color,
       }}
     >
       <h1 className={styles.certificate__value} onClick={goToDetails}>

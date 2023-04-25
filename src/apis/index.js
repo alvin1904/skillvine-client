@@ -35,12 +35,16 @@ export const getNotificationsAPI = () =>
   api.get("/students/notifications", { withCredentials: true });
 export const deleteNotificationsAPI = () =>
   api.delete("/students/notifications", { withCredentials: true });
+export const getScoreAPI = (id) =>
+  api.get(`/students/scores`, { withCredentials: true });
 
 // CERTIFICATES
 export const uploadCertificateAPI = (formdata) =>
   api2.post("/students/certificates", formdata, { withCredentials: true });
 export const getCertificatesAPI = () =>
   api.get("/students/certificates", { withCredentials: true });
+export const deleteCertificatesAPI = (id) =>
+  api.delete(`/students/certificates/${id}`, { withCredentials: true });
 
 // INTERCEPTOR
 let refresh = false;

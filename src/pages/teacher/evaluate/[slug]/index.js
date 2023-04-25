@@ -47,7 +47,7 @@ export default function index() {
                             : certificate.level
                         }
                         isLeadership={certificate.isLeadership}
-                        status={certificate.status}
+                        statuse={certificate.status}
                         use={certCompStatus.MARK}
                       />
                     ))}

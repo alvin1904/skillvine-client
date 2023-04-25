@@ -68,7 +68,7 @@ export default function certificates() {
                             : certificate.level
                         }
                         isLeadership={certificate.isLeadership}
-                        status={certificate.status}
+                        statuse={certificate.status}
                         use={certCompStatus.VIEW}
                       />
                     ))}
