@@ -32,8 +32,10 @@ export default function AddCertificate({ data = {} }) {
 
     // FETCHING CATEGORY
     const [categoryData, setCategoryData] = useState([]);
+    const [seedCheck, setSeedCheck] = useState(0);
 
     const fetchCategoryData = useCallback(async () => {
+      setSeedCheck(seedCheck + 1);
       const response = await fetchData(getCategoryAPI);
       console.log(response.data);
       if (response.status === 200) setCategoryData(response.data);
@@ -41,7 +43,7 @@ export default function AddCertificate({ data = {} }) {
     }, [fetchData, getCategoryAPI, throwError]);
 
     useEffect(() => {
-      categoryData.length === 0 && fetchCategoryData();
+      (categoryData.length === 0 && seedCheck < 3) && fetchCategoryData();
     }, [categoryData.length, fetchCategoryData]);
 
     // STRUCTURING DATA
