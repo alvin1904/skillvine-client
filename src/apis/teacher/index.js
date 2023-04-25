@@ -16,6 +16,8 @@ export const setHead = (token) => {
 export const apiLive = () => api.get("/");
 export const verifyToken = () =>
   api.get("/auth/teachers/get-access-token", { withCredentials: true });
+export const logoutAPI = () =>
+  api.post("/auth/teachers/logout", { withCredentials: true });
 
 //   BATCHES
 export const getBatchesAPI = () =>

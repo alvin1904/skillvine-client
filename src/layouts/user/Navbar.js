@@ -3,6 +3,7 @@ import styles from "@/styles/student/Navbar.module.css";
 import { useRouter } from "next/router";
 import goToPage from "@/utils/goToPage";
 import { studentNavbar } from "@/constants/data";
+import { logoutAPI } from "@/apis";
 
 export default function Navbar() {
   const router = useRouter();
@@ -12,9 +13,10 @@ export default function Navbar() {
     <nav className={styles.nav}>
       {studentNavbar.map((item, index) => (
         <div
-        key={index}
+          key={index}
           className={styles.nav_logo}
-          onClick={() => {
+          onClick={async () => {
+            if (item.page === studentNavbar[4].page) await logoutAPI();
             goToPage(router, item.page);
           }}
         >

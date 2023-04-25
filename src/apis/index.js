@@ -26,6 +26,8 @@ export const updateUserAPI = (data) =>
   api.patch("/users/students", data, { withCredentials: true });
 export const verifyToken = () =>
   api.get("/auth/students/get-access-token", { withCredentials: true });
+export const logoutAPI = () =>
+  api.post("/auth/students/logout", { withCredentials: true });
 
 // GET CATEGORIES
 export const getCategoryAPI = () => api.get("/category");

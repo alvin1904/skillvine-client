@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import Loadings from "@/components/Loading/Loadings";
 import NothingFound from "@/components/Loading/NothingFound";
 import useAxiosCaller from "@/utils/useAxiosCaller";
-import { getBatchesAPI, getStudentsAPI } from "@/apis/teacher";
+import { getBatchesAPI, getStudentsAPI, logoutAPI } from "@/apis/teacher";
 import { formatArrayToObj } from "@/utils/arrayOperations";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
@@ -41,8 +41,10 @@ export default function batchesPage() {
       setSelectMode(SelectMode.BATCH);
     }
   };
-  const signOut = () => {
-    router.push("/login");
+  const signOut = async () => {
+    const response = await fetchData(logoutAPI);
+    if (response.status == 200) router.push("/login");
+    else throwError(response?.response?.status);
   };
   const changePage = async (id) => {
     if (selectMode === SelectMode.BATCH) {
