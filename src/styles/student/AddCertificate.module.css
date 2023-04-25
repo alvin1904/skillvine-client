@@ -17,6 +17,7 @@
   resize: none;
   height: 40px;
   padding: 5px 10px;
+  text-align: left;
 }
 .LeftAdd > div > textarea {
   height: 120px;

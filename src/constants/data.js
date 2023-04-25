@@ -29,6 +29,15 @@ export const levels = [
   "Sub-Coordinator",
   "Volunteer",
 ];
+export const levels2 = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5"];
+export const levels3 = ["Core-Coordinator", "Sub-Coordinator", "Volunteer"];
+export const levelWithLeadership = "Leadership & Management";
+export const yearOfStudy = [
+  "First Year",
+  "Second Year",
+  "Third Year",
+  "Fourth Year",
+];
 
 export const certificateStatus = {
   PENDING: {

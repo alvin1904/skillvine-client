@@ -27,11 +27,18 @@ export const updateUserAPI = (data) =>
 export const verifyToken = () =>
   api.get("/auth/students/get-access-token", { withCredentials: true });
 
+// GET CATEGORIES
+export const getCategoryAPI = () => api.get("/category");
+
 // NOTIFICATIONS
 export const getNotificationsAPI = () =>
   api.get("/students/notifications", { withCredentials: true });
 export const deleteNotificationsAPI = () =>
   api.delete("/students/notifications", { withCredentials: true });
+
+// CERTIFICATES
+export const uploadCertificateAPI = (formdata) =>
+  api2.post("/students/certificates", formdata, { withCredentials: true });
 
 // INTERCEPTOR
 let refresh = false;
