@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import StudentLayout from "@/layouts/StudentLayout";
-import Certificates from "@/componentsUser/view/Certificates";
-import Filters from "@/componentsUser/view/Filters";
-import Indicators from "@/componentsUser/view/Indicators";
-import SearchBar from "@/componentsUser/view/SearchBar";
-import EachCertificate from "@/componentsUser/view/EachCertificate";
 import styles from "@/styles/student/CertificateList.module.css";
 import Loadings from "@/components/Loading/Loadings";
 import NothingFound from "@/components/Loading/NothingFound";
+import Certificates from "@/components/viewCertificates/Certificates";
+import SearchBar from "@/components/viewCertificates/SearchBar";
+import Filters from "@/components/viewCertificates/Filters";
+import Indicators from "@/components/viewCertificates/Indicators";
+import EachCertificate from "@/components/viewCertificates/EachCertificate";
 
 export default function certificates() {
   const [certificates, setCertificates] = useState({});

@@ -46,7 +46,7 @@ export default function RegisterComponent() {
   return (
     <form className={`${styles.login_card} ${styles.register_card}`} onSubmit={handleSubmit}>
       <div className={styles.login_card_header}>
-        Fill the details to proceed:
+        Fill IN THE DETAILS:
       </div>
       <RegisterFormComps
         ktuIdRef={ktuIdRef}

@@ -9,6 +9,7 @@ export default function Certificates({ children }) {
         <h1 className={styles.certificateList__title}>Date</h1>
         <h1 className={styles.certificateList__title}>Activity</h1>
         <h1 className={styles.certificateList__title}>Level</h1>
+        <h1 className={styles.certificateList__title}>Edit/Delete</h1>
       </div>
       <div className={styles.certificateList__body}>{children}</div>
     </div>

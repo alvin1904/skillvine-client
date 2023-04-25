@@ -337,3 +337,11 @@ body {
     margin-bottom: 40px;
   }
 }
+
+/* TEACHER VIEW */
+.teacher_view{
+  padding: 2rem;
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+}

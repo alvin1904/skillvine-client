@@ -7,8 +7,8 @@ export default function Indicators() {
   return (
     <>
       <div className={styles.indicators}>
-        {Object.keys(certificateStatus).map((status) => (
-          <div className={styles.indicator}>
+        {Object.keys(certificateStatus).map((status, index) => (
+          <div className={styles.indicator} key={index}>
             <div
               className={styles.color_indicator}
               style={{
