@@ -23,3 +23,26 @@ export const setHead = (token) => {
 export const apiLive = () => api.get("/");
 export const updateUserAPI = (data) =>
   api.patch("/users/students", data, { withCredentials: true });
+export const verifyToken = () =>
+  api.get("/auth/students/get-access-token", { withCredentials: true });
+
+let refresh = false;
+api.interceptors.response.use(
+  (res) => res,
+  async (error) => {
+    try {
+      if (error.response.status === 401 && !refresh) {
+        refresh = true;
+        const response = await verifyToken();
+        if (response.status === 200) {
+          setHead(response.data.accessToken);
+          return api(error.config);
+        }
+      }
+      refresh = false;
+      return error;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
