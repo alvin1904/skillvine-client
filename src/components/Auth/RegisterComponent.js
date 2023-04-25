@@ -2,15 +2,19 @@ import React, { useRef } from "react";
 import styles from "@/styles/auth.module.css";
 import { status, useCustomError } from "../ErrorHandler/ErrorContext";
 import RegisterFormComps from "./RegisterFormComps";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { updateUserAPI } from "@/apis";
+import Loadings from "../Loading/Loadings";
 
 export default function RegisterComponent() {
   const ktuIdRef = useRef(null);
   const admissionNoRef = useRef(null);
   const batchStart = useRef(null);
   const batchEnd = useRef(null);
-  let college = "Rajiv Gandhi Institute of Technology, Kottayam";
+  const college = "Rajiv Gandhi Institute of Technology, Kottayam";
 
   const { throwError } = useCustomError();
+  const { data, loading, error, fetchData } = useAxiosCaller();
 
   const validateData = () => {
     if (![10, 11].includes(ktuIdRef.current.value.length)) {
@@ -41,13 +45,19 @@ export default function RegisterComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateData()) return;
-    const data = finalizeData();
+    let temp = finalizeData();
+    await fetchData(updateUserAPI, temp);
+    if (data && data.status === 200) throwError("success", status.SUCCESS);
+    else throwError("status", status.INFO);
+    console.log(data);
+    error && console.log(error);
   };
   return (
-    <form className={`${styles.login_card} ${styles.register_card}`} onSubmit={handleSubmit}>
-      <div className={styles.login_card_header}>
-        Fill IN THE DETAILS:
-      </div>
+    <form
+      className={`${styles.login_card} ${styles.register_card}`}
+      onSubmit={handleSubmit}
+    >
+      <div className={styles.login_card_header}>Fill IN THE DETAILS:</div>
       <RegisterFormComps
         ktuIdRef={ktuIdRef}
         admissionNoRef={admissionNoRef}
@@ -56,7 +66,7 @@ export default function RegisterComponent() {
       />
       <div className={styles.login_detail_collect}>
         <button type="submit" className={styles.login_btn}>
-          Submit Details
+          {loading ? <Loadings /> : " Submit Details"}
         </button>
       </div>
     </form>

@@ -21,3 +21,5 @@ export const setHead = (token) => {
 };
 
 export const apiLive = () => api.get("/");
+export const updateUserAPI = (data) =>
+  api.patch("/users/students", data, { withCredentials: true });
