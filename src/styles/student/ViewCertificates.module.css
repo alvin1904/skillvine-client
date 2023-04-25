@@ -69,6 +69,7 @@
   grid-auto-flow: column;
   align-items: center;
   width: max-content;
+  font-size: 0.75rem;
 }
 .color_indicator {
   width: 12px;

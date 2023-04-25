@@ -104,6 +104,7 @@ body {
 :root {
   --clr-primary-100: #c8f3ff;
   --clr-primary-200: #11c3f4;
+  --clr-primary-250: #0d81a1;
   --clr-primary-300: #ffa8b0;
   --clr-primary-400: #db5461;
   --clr-primary-600: #5cba5c;
@@ -129,7 +130,7 @@ body {
 .student_main {
   height: 100%;
   width: 65rem;
-  padding: 8px;
+  padding: 0px 8px;
   border-radius: 8px;
   background-color: var(--clr-light);
   color: var(--clr-dark);
@@ -315,7 +316,7 @@ body {
 }
 
 /* ADD CERTIFICATES */
-.add_certificate {
+.add_certificate, .dashboard {
   height: 100%;
   width: 100%;
   margin: 0;

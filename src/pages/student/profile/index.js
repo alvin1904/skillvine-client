@@ -6,7 +6,7 @@ import React from "react";
 export default function profile() {
   return (
     <StudentLayout>
-      <div>profile</div>
+      <div className="dashboard">profile</div>
     </StudentLayout>
   );
 }
