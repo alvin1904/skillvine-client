@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "@/styles/student/CertificateList.module.css";
-import { certificateStatus, levels } from "@/constants/data";
+import { certCompStatus, certificateStatus, levels } from "@/constants/data";
 import { useRouter } from "next/router";
-import { MdEditDocument, MdDelete } from "react-icons/md";
+import { MdEditDocument, MdDelete, MdAssessment } from "react-icons/md";
 
 export default function EachCertificate({
   id,
@@ -12,10 +12,16 @@ export default function EachCertificate({
   level,
   isLeadership,
   status,
+  use,
 }) {
   const router = useRouter();
+  const Icon = use === certCompStatus.MARK ? MdAssessment : MdEditDocument;
+  const baseLink =
+    use === certCompStatus.MARK
+      ? "/teacher/mark/"
+      : "/student/certificates/edit/";
   const goToDetails = () => router.push(`/student/certificates/${id}`);
-  const handleEdit = () => router.push("/student/certificates/edit/" + id);
+  const handleEdit = () => router.push(baseLink + id);
   const handleDelete = () => router.push("/student/certificates/delete/" + id);
   return (
     <div
@@ -37,7 +43,7 @@ export default function EachCertificate({
         {levels[isLeadership ? level + 5 : level]}
       </h1>
       <div className={styles.certificate__icons}>
-        <MdEditDocument
+        <Icon
           size={25}
           className={styles.certificate__icon}
           onClick={handleEdit}

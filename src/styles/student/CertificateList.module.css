@@ -64,7 +64,7 @@
   }
   .certificate__content {
     border: 1px solid var(--clr-primary-300);
-    padding: 5px;
+    padding: 0px 5px;
   }
   .certificate__icons{
     width: 50px;

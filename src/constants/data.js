@@ -44,5 +44,7 @@ export const certificateStatus = {
     border: "var(--clr-primary-300)",
   },
 };
+
+export const certCompStatus = { MARK: "mark", VIEW: "view" };
 // LOGIN PAGE
 export const loginOptions = ["Login as a student", "Login as a teacher"];

@@ -9,6 +9,7 @@ import Filters from "@/components/viewCertificates/Filters";
 import Indicators from "@/components/viewCertificates/Indicators";
 import SearchBar from "@/components/viewCertificates/SearchBar";
 import styles from "@/styles/student/CertificateList.module.css";
+import { certCompStatus } from "@/constants/data";
 
 export default function index() {
   const [certificates, setCertificates] = useState();
@@ -19,7 +20,7 @@ export default function index() {
         <SearchBar />
         <Filters />
         <Indicators />
-        <Certificates>
+        <Certificates use={certCompStatus.MARK}>
           {loading ? (
             <Loadings />
           ) : (
@@ -47,6 +48,7 @@ export default function index() {
                         }
                         isLeadership={certificate.isLeadership}
                         status={certificate.status}
+                        use={certCompStatus.MARK}
                       />
                     ))}
                   </div>
