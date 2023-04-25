@@ -7,24 +7,28 @@ import { getScoreAPI } from "@/apis";
 export default function Sidebar() {
   const { loading, fetchData } = useAxiosCaller();
   const { throwError } = useCustomError();
-  const [seedCheck, setSeedCheck] = useState(0);
+  const [seedCheck, setSeedCheck] = useState(true);
 
   const [targetScore, setTargetScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
 
-  const getScores = useCallback(async () => {
-    setSeedCheck(seedCheck + 1);
-    const response = await fetchData(getScoreAPI);
-    if (response.status === 200) {
-      setTargetScore(response?.data?.targetScore);
-      setCurrentScore(response?.data?.currentScore);
-    } else if (response.status === 401) console.log("unauthorized");
-    else throwError(response?.data?.status);
-  }, [fetchData]);
-
   useEffect(() => {
-    if (targetScore === 0 && seedCheck < 1) getScores();
-  }, [currentScore, getScores]);
+    setSeedCheck(true);
+  }, []);
+  useEffect(() => {
+    const getScores = async () => {
+      setSeedCheck(false);
+      const response = await fetchData(getScoreAPI);
+      if ([200, 304].includes(response.status)) {
+        setTargetScore(response?.data?.targetScore);
+        setCurrentScore(response?.data?.currentScore);
+      } else if (response?.response?.status === 401) console.log("Token not present");
+      else throwError(response?.response?.status);
+    };
+
+    seedCheck && getScores();
+  }, [seedCheck]);
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebar_section}>

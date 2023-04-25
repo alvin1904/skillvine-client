@@ -17,7 +17,8 @@ export default function NotificationCentre() {
       const response = await fetchData(getNotificationsAPI);
       if ([200, 304].includes(response.status) && response.data)
         setNotifications(response.data);
-      else if (response.status === 401) console.log("Token not present");
+      else if (response?.response?.status === 401)
+        console.log("Token not present");
       else throwError(response.status);
     };
     getNotification();
