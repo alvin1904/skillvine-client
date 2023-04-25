@@ -35,7 +35,7 @@ api.interceptors.response.use(
         refresh = true;
         const response = await verifyToken();
         if (response.status === 200) {
-          setHead(response.data.accessToken);
+          setHead(response.data.accessTokenStudent);
           return api(error.config);
         }
       }

@@ -5,6 +5,7 @@ import RegisterFormComps from "./RegisterFormComps";
 import useAxiosCaller from "@/utils/useAxiosCaller";
 import { updateUserAPI } from "@/apis";
 import Loadings from "../Loading/Loadings";
+import { useRouter } from "next/router";
 
 export default function RegisterComponent() {
   const ktuIdRef = useRef(null);
@@ -14,7 +15,8 @@ export default function RegisterComponent() {
   const college = "Rajiv Gandhi Institute of Technology, Kottayam";
 
   const { throwError } = useCustomError();
-  const { data, loading, error, fetchData } = useAxiosCaller();
+  const { loading, fetchData } = useAxiosCaller();
+  const router = useRouter();
 
   const validateData = () => {
     if (![10, 11].includes(ktuIdRef.current.value.length)) {
@@ -46,11 +48,12 @@ export default function RegisterComponent() {
     e.preventDefault();
     if (!validateData()) return;
     let temp = finalizeData();
-    await fetchData(updateUserAPI, temp);
-    if (data && data.status === 200) throwError("success", status.SUCCESS);
-    else throwError("status", status.INFO);
+    const data = await fetchData(updateUserAPI, temp);
     console.log(data);
-    error && console.log(error);
+    if (data && data.status === 200) {
+      throwError("Details Updated Successfully", status.SUCCESS);
+      router.push("/student/dashboard");
+    } else throwError();
   };
   return (
     <form
