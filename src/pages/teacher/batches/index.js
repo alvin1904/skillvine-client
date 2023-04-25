@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/teacher/Selector.module.css";
 import Folders from "@/componentsAdmin/BatchSelect/Folders";
 import { SelectMode } from "@/constants/data";
@@ -8,12 +8,32 @@ import { IoIosArrowDropleftCircle, IoIosExit } from "react-icons/io";
 import { useRouter } from "next/router";
 import Loadings from "@/components/Loading/Loadings";
 import NothingFound from "@/components/Loading/NothingFound";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { getBatchesAPI, getStudentsAPI } from "@/apis/teacher";
+import { formatArrayToObj } from "@/utils/arrayOperations";
+import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
 export default function batchesPage() {
   const router = useRouter();
+  const { loading, fetchData } = useAxiosCaller();
+  const { throwError } = useCustomError();
   const [selectMode, setSelectMode] = useState(SelectMode.BATCH);
   const [array, setArray] = useState([]);
   const [batchesBackup, setBatchesBackup] = useState([]);
+
+  useEffect(() => {
+    const getBatches = async () => {
+      const response = await fetchData(getBatchesAPI);
+      if ([200, 304].includes(response.status) && response.data) {
+        const temp = formatArrayToObj(response.data);
+        setArray(temp);
+        setBatchesBackup(temp);
+      } else if (response.status === 401) console.log("Token not present");
+      else throwError(response.status);
+    };
+    getBatches();
+  }, []);
+
   const goBack = () => {
     if (selectMode === SelectMode.BATCH) router.push("/login");
     else if (selectMode === SelectMode.STUDENT) {
@@ -24,9 +44,11 @@ export default function batchesPage() {
   const signOut = () => {
     router.push("/login");
   };
-  const changePage = (id) => {
+  const changePage = async (id) => {
     if (selectMode === SelectMode.BATCH) {
-      setArray([]);
+      const response = await fetchData(getStudentsAPI, id);
+      if (response.status === 200 && response.data) setArray(response.data);
+      else throwError(response.status);
       setSelectMode(SelectMode.STUDENT);
     } else if (selectMode === SelectMode.STUDENT)
       router.push("/teacher/evaluate/" + id);
@@ -43,7 +65,9 @@ export default function batchesPage() {
             <IoIosExit size={30} />
           </div>
         </div>
-        {array ? (
+        {loading ? (
+          <Loadings />
+        ) : array ? (
           array.length === 0 ? (
             <NothingFound />
           ) : (

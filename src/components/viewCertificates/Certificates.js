@@ -11,7 +11,7 @@ export default function Certificates({ children, use }) {
         <h1 className={styles.certificateList__title}>Activity</h1>
         <h1 className={styles.certificateList__title}>Level</h1>
         <h1 className={styles.certificateList__title}>
-          {use === certCompStatus.MARK ? "Mark" : "Edit"}/Delete
+          {use === certCompStatus.MARK ? "Mark" : "Edit/Delete"}
         </h1>
       </div>
       <div className={styles.certificateList__body}>{children}</div>

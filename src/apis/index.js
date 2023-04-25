@@ -35,7 +35,7 @@ export const getNotificationsAPI = () =>
   api.get("/students/notifications", { withCredentials: true });
 export const deleteNotificationsAPI = () =>
   api.delete("/students/notifications", { withCredentials: true });
-export const getScoreAPI = (id) =>
+export const getScoreAPI = () =>
   api.get(`/students/scores`, { withCredentials: true });
 
 // CERTIFICATES

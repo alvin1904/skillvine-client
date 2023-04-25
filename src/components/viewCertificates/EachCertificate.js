@@ -26,7 +26,11 @@ export default function EachCertificate({
     use === certCompStatus.MARK
       ? "/teacher/mark/"
       : "/student/certificates/edit/";
-  const goToDetails = () => router.push(`/student/certificates/${id}`);
+  const baseLink2 =
+    use === certCompStatus.MARK
+      ? "/teacher/certificates/"
+      : "/student/certificates/";
+  const goToDetails = () => router.push(baseLink2 + id);
   const handleEdit = () => router.push(baseLink + id);
   const handleDelete = async () => {
     const response = await fetchData(deleteCertificatesAPI, id);
@@ -59,11 +63,13 @@ export default function EachCertificate({
           className={styles.certificate__icon}
           onClick={handleEdit}
         />
-        <MdDelete
-          size={25}
-          className={styles.certificate__icon}
-          onClick={handleDelete}
-        />
+        {use === certCompStatus.VIEW && (
+          <MdDelete
+            size={25}
+            className={styles.certificate__icon}
+            onClick={handleDelete}
+          />
+        )}
       </div>
     </div>
   );

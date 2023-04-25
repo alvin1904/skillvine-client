@@ -18,11 +18,12 @@ export default function Sidebar() {
     if (response.status === 200) {
       setTargetScore(response?.data?.targetScore);
       setCurrentScore(response?.data?.currentScore);
-    } else throwError(response?.data?.status);
+    } else if (response.status === 401) console.log("unauthorized");
+    else throwError(response?.data?.status);
   }, [fetchData]);
 
   useEffect(() => {
-    if (targetScore === 0 && seedCheck < 3) getScores();
+    if (targetScore === 0 && seedCheck < 1) getScores();
   }, [currentScore, getScores]);
   return (
     <aside className={styles.sidebar}>

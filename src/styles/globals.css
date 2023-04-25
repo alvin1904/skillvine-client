@@ -346,3 +346,8 @@ body {
   width: 100%;
   overflow-y: scroll;
 }
+@media(max-width: 768px){
+  .teacher_view{
+    padding: 0.25rem;
+  }
+}
