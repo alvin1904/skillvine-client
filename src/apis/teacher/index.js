@@ -28,6 +28,10 @@ export const getStudentsAPI = (id) =>
 export const getStudentsCertificatesAPI = (id) =>
   api.get(`/teachers/certificates/students/${id}`, { withCredentials: true });
 
+// CERTIFICATES
+export const getCertificateAPI2 = (id) =>
+  api.get(`/teachers/certificates/${id}`, { withCredentials: true });
+
 // INTERCEPTOR
 let refresh = false;
 api.interceptors.response.use(

@@ -43,8 +43,7 @@ export default function batchesPage() {
   };
   const signOut = async () => {
     const response = await fetchData(logoutAPI);
-    if (response.status == 200) router.push("/login");
-    else throwError(response?.response?.status);
+    router.push("/login");
   };
   const changePage = async (id) => {
     if (selectMode === SelectMode.BATCH) {
