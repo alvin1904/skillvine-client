@@ -1,3 +1,4 @@
+import { addToLS } from "@/utils/LSOperations";
 import axios from "axios";
 
 const api = axios.create({
@@ -45,6 +46,8 @@ export const uploadCertificateAPI = (formdata) =>
   api2.post("/students/certificates", formdata, { withCredentials: true });
 export const getCertificatesAPI = () =>
   api.get("/students/certificates", { withCredentials: true });
+export const getCertificateAPI = (id) =>
+  api.get(`/students/certificates/${id}`, { withCredentials: true });
 export const deleteCertificatesAPI = (id) =>
   api.delete(`/students/certificates/${id}`, { withCredentials: true });
 
@@ -59,6 +62,7 @@ api.interceptors.response.use(
         const response = await verifyToken();
         if (response.status === 200) {
           setHead(response.data.accessTokenStudent);
+          addToLS("accessTokenStudent", response.data.accessTokenStudent);
           return api(error.config);
         }
       }

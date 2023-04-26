@@ -6,6 +6,8 @@ import {
 } from "react-icons/md";
 import { GoSignOut } from "react-icons/go";
 
+export const users = { STUDENT: "student", TEACHER: "teacher" };
+
 export const studentNavbar = [
   { icon: MdHome, page: "/student/dashboard" },
   { icon: MdLibraryBooks, page: "/student/certificates" },

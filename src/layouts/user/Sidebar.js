@@ -19,7 +19,7 @@ export default function Sidebar() {
     const getScores = async () => {
       setSeedCheck(false);
       const response = await fetchData(getScoreAPI);
-      if ([200, 304].includes(response.status)) {
+      if ([200, 304].includes(response?.status)) {
         setTargetScore(response?.data?.targetScore);
         setCurrentScore(response?.data?.currentScore);
       } else if (response?.response?.status === 401) console.log("Token not present");

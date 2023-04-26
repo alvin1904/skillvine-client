@@ -1,3 +1,4 @@
+import { addToLS } from "@/utils/LSOperations";
 import axios from "axios";
 
 const api = axios.create({
@@ -38,6 +39,7 @@ api.interceptors.response.use(
         const response = await verifyToken();
         if (response.status === 200) {
           setHead(response.data.accessTokenTeacher);
+          addToLS("accessTokenTeacher", response.data.accessTokenTeacher);
           return api(error.config);
         }
       }

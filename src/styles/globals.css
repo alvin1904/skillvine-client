@@ -321,7 +321,9 @@ body {
   width: 100%;
   margin: 0;
 }
-
+.student_pages::-webkit-scrollbar{
+  width: 0;
+}
 @media (max-width: 768px) {
   .student_pages {
     grid-auto-flow: column;
