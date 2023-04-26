@@ -1,3 +1,5 @@
+"use client"
+
 import CertificateDetails from "@/components/CertificateDetails/CertificateDetails";
 import { users } from "@/constants/data";
 import { useRouter } from "next/router";

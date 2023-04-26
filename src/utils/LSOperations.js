@@ -3,7 +3,10 @@ export const addToLS = (key, value) => {
 };
 
 export const getFromLS = (key) => {
-  const value = localStorage.getItem(key);
+  const value =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem(key)
+      : false;
   if (value) return JSON.parse(value);
 };
 
