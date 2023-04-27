@@ -16,8 +16,10 @@ import { getCertificatesAPI } from "@/apis";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
 export default function certificates() {
-  const [certificates, setCertificates] = useState({});
+  const [certificateBackup, setCertificateBackup] = useState({});
+  const [certificates, setCertificates] = useState([]);
   const [seedCheck, setSeedCheck] = useState(0);
+  const [filterUpdate, setFilterUpdate] = useState("");
 
   const { loading, fetchData } = useAxiosCaller();
   const { throwError } = useCustomError();
@@ -26,55 +28,73 @@ export default function certificates() {
     setSeedCheck(seedCheck + 1);
     const response = await fetchData(getCertificatesAPI);
     console.log(response);
-    if (response.status === 200) setCertificates(response.data);
-    else throwError(response?.data?.status);
+    if (response.status === 200) {
+      setCertificates(response.data?.points);
+      setCertificateBackup(response.data?.points);
+    } else throwError(response?.data?.status);
   }, [fetchData]);
 
   useEffect(() => {
-    if (Object.keys(certificates).length === 0 && seedCheck < 3)
+    if (certificates && certificates.length === 0 && seedCheck < 3)
       getCertificatesList();
   }, [certificates, getCertificatesList]);
+
+  const filterDataByLevel = (theFilter, data) => {
+    if (typeof data === "undefined") data = Object.values(data.points).flat();
+    const filteredData = {};
+    for (const year in data)
+      filteredData[year] = data[year].filter(
+        (item) =>
+          item.isLeadership === theFilter?.isLeadership &&
+          (item.level === theFilter?.level ||
+            item.leadershipLevel === theFilter?.level)
+      );
+    console.log(filteredData);
+    return filteredData;
+  };
+
+  useEffect(() => {
+    if (Object.keys(filterUpdate).length !== 0 && filterUpdate !== {})
+      setCertificates(filterDataByLevel(filterUpdate, certificateBackup));
+    else setCertificates(certificateBackup);
+  }, [filterUpdate]);
 
   return (
     <StudentLayout>
       <div className="add_certificate">
         <SearchBar />
-        <Filters />
+        <Filters setFilterUpdate={setFilterUpdate} />
         <Indicators />
         <Certificates use={certCompStatus.VIEW}>
           {loading ? (
             <Loadings />
           ) : (
             certificates &&
-            certificates.points &&
-            (certificates.length === 0 ||
-            Object.entries(certificates.points) < 0 ? (
+            (certificates.length === 0 ? (
               <NothingFound />
             ) : (
-              Object.entries(certificates.points).map(
-                ([year, certificates]) => (
-                  <div key={year}>
-                    <h2 className={styles.year__key}>{year}</h2>
-                    {certificates.map((certificate) => (
-                      <EachCertificate
-                        key={certificate._id}
-                        id={certificate._id}
-                        name={certificate.certificateName}
-                        date={certificate.participationDate}
-                        activity={certificate?.category?.activity || ""}
-                        level={
-                          certificate.isLeadership
-                            ? certificate.leadershipLevel
-                            : certificate.level
-                        }
-                        isLeadership={certificate.isLeadership}
-                        statuse={certificate.status}
-                        use={certCompStatus.VIEW}
-                      />
-                    ))}
-                  </div>
-                )
-              )
+              Object.entries(certificates).map(([year, certificates]) => (
+                <div key={year}>
+                  <h2 className={styles.year__key}>{year}</h2>
+                  {certificates.map((certificate) => (
+                    <EachCertificate
+                      key={certificate._id}
+                      id={certificate._id}
+                      name={certificate.certificateName}
+                      date={certificate.participationDate}
+                      activity={certificate?.category?.activity || ""}
+                      level={
+                        certificate.isLeadership
+                          ? certificate.leadershipLevel
+                          : certificate.level
+                      }
+                      isLeadership={certificate.isLeadership}
+                      statuse={certificate.status}
+                      use={certCompStatus.VIEW}
+                    />
+                  ))}
+                </div>
+              ))
             ))
           )}
         </Certificates>

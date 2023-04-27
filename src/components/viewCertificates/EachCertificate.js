@@ -35,7 +35,10 @@ export default function EachCertificate({
   const handleDelete = async () => {
     const response = await fetchData(deleteCertificatesAPI, id);
     if (response && response.status === 200)
-      throwError("Certificate deleted successfully!", status.SUCCESS);
+      throwError(
+        "Certificate deleted successfully! Changes will be updated shortly.",
+        status.SUCCESS
+      );
     else throwError(response?.response?.status);
   };
   return (
@@ -55,7 +58,7 @@ export default function EachCertificate({
         {activity}
       </h1>
       <h1 className={styles.certificate__value} onClick={goToDetails}>
-        {levels[isLeadership ? level + 5 : level]}
+        {levels[isLeadership ? level + 4 : level - 1]}
       </h1>
       <div className={styles.certificate__icons}>
         <Icon

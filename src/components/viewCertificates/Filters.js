@@ -3,8 +3,9 @@ import styles from "@/styles/student/ViewCertificates.module.css";
 import DropDown from "@/components/DropDown";
 import { getRandomNumber } from "@/utils/getRandomNumber";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
+import { levels2, levels3 } from "@/constants/data";
 
-export default function Filters() {
+export default function Filters({ setFilterUpdate }) {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -28,7 +29,9 @@ export default function Filters() {
   ]);
 
   const [arr3, setArr3] = useState(["Pending", "Approved", "Rejected"]);
-  const handleClear = () => setClearSelection(getRandomNumber(1, 10));
+  const handleClear = () => {
+    setFilterUpdate({})
+    return setClearSelection(getRandomNumber(1, 10));}
   const ErrorAction = () =>
     throwError("Select a filter option", status.WARNING);
 
@@ -47,6 +50,10 @@ export default function Filters() {
     const [t1, t2, t3] = findValues([ref1, ref2, ref3], [arr1, arr2, arr3]);
     if (t1 === "" && t2 === "" && t3 === "") return ErrorAction();
     console.log([t1, t2, t3]);
+    console.log(t1);
+    if (levels2.includes(t1)) setFilterUpdate({level: levels2.indexOf(t1)+1, isLeadership: false});
+    else if (levels3.includes(t1)) setFilterUpdate({level: levels3.indexOf(t1)+1, isLeadership: true});
+    else throwError("Invalid filter option", status.WARNING);
   };
 
   return (
