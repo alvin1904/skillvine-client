@@ -58,6 +58,7 @@ api.interceptors.response.use(
   async (error) => {
     try {
       if (error.response.status === 401 && !refresh) {
+        console.log("refreshing token interceptor")
         refresh = true;
         const response = await verifyToken();
         if (response.status === 200) {

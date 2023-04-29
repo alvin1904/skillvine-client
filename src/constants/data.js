@@ -31,6 +31,8 @@ export const levels = [
   "Sub-Coordinator",
   "Volunteer",
 ];
+export const statuses = ["Pending", "Approved", "Rejected"];
+
 export const levels2 = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5"];
 export const levels3 = ["Core-Coordinator", "Sub-Coordinator", "Volunteer"];
 export const levelWithLeadership = "Leadership & Management";
