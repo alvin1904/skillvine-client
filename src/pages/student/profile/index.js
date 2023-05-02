@@ -1,12 +1,49 @@
-"use client"
+"use client";
 
+import React, { useEffect, useState } from "react";
 import StudentLayout from "@/layouts/StudentLayout";
-import React from "react";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { fetchProfileAPI } from "@/apis";
+import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
+import Loadings from "@/components/Loading/Loadings";
+import ProfileComponent from "@/componentsUser/profile/ProfileComponent";
 
 export default function profile() {
-  return (
-    <StudentLayout>
-      <div className="dashboard">profile</div>
-    </StudentLayout>
-  );
+  const { loading, fetchData } = useAxiosCaller();
+  const [data, setData] = useState({});
+  const { throwError } = useCustomError();
+  const fetchProfileData = async () => {
+    const response = await fetchData(fetchProfileAPI);
+    if (response.status === 200) {
+      setData(response.data);
+    } else throwError(response.status || response.response.status);
+  };
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
+  if (!data || loading)
+    return (
+      <StudentLayout>
+        <div className="dashboard">
+          <Loadings />
+        </div>
+      </StudentLayout>
+    );
+  else
+    return (
+      <StudentLayout>
+        <div className="dashboard">
+          <ProfileComponent
+            profilePic={data.profileImage}
+            name={data.name}
+            email={data.email}
+            college={data.college}
+            admissionNumber={data.admissionNumber}
+            ktuId={data.ktuId}
+            batch={data.batch}
+            id={data._id}
+          />
+        </div>
+      </StudentLayout>
+    );
 }

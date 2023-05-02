@@ -29,6 +29,8 @@ export const verifyToken = () =>
   api.get("/auth/students/get-access-token", { withCredentials: true });
 export const logoutAPI = () =>
   api.post("/auth/students/logout", { withCredentials: true });
+export const fetchProfileAPI = () =>
+  api.get("/users/students", { withCredentials: true });
 
 // GET CATEGORIES
 export const getCategoryAPI = () => api.get("/category");
@@ -58,7 +60,7 @@ api.interceptors.response.use(
   async (error) => {
     try {
       if (error.response.status === 401 && !refresh) {
-        console.log("refreshing token interceptor")
+        console.log("refreshing token interceptor");
         refresh = true;
         const response = await verifyToken();
         if (response.status === 200) {
