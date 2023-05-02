@@ -36,13 +36,14 @@ export default function batchesPage() {
   }, []);
 
   const goBack = () => {
-    if (selectMode === SelectMode.BATCH) router.push("/login");
+    if (selectMode === SelectMode.BATCH) signOut();
     else if (selectMode === SelectMode.STUDENT) {
       setArray(batchesBackup);
       setSelectMode(SelectMode.BATCH);
     }
   };
   const signOut = async () => {
+    localStorage.clear();
     const response = await fetchData(logoutAPI);
     router.push("/login");
   };

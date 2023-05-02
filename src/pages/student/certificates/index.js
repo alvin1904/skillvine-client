@@ -26,6 +26,7 @@ export default function certificates() {
     setFilterUpdate,
     loading,
   } = useCertificateFilter();
+  // entire login in the custom hook
 
   return (
     <StudentLayout>

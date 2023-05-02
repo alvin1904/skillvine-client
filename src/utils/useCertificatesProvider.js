@@ -6,7 +6,6 @@ import { getCertificatesAPI } from "@/apis";
 const useCertificateFilter = () => {
   const [certificateBackup, setCertificateBackup] = useState({});
   const [certificates, setCertificates] = useState([]);
-  const [seedCheck, setSeedCheck] = useState(0);
   const [filterUpdate, setFilterUpdate] = useState("");
 
   const { loading, fetchData } = useAxiosCaller();
@@ -25,29 +24,57 @@ const useCertificateFilter = () => {
     getCertificatesList();
   }, []);
 
-  const filterDataByLevel = useCallback(
-    (theFilter, data) => {
-      console.log(theFilter);
-      console.log(data);
-      if (!data) data = certificateBackup;
-      const filteredData = {};
-      Object.entries(data).forEach(([year, yearData]) => {
-        filteredData[year] = yearData.filter(
-          (item) =>
-            item.isLeadership === theFilter?.isLeadership &&
-            (item.level === theFilter?.level ||
-              item.status == theFilter?.status?.toLowerCase() ||
-              item.leadershipLevel === theFilter?.level)
-        );
-      });
-      return filteredData;
-    },
-    [certificateBackup]
-  );
+  const filterDataByLevel = (isLeadership, level, data) => {
+    console.log("FILTER BY LEVEL");
+    let filteredData = {};
+    Object.entries(data).forEach(([year, yearData]) => {
+      filteredData[year] = yearData.filter(
+        (item) =>
+          item.isLeadership === isLeadership &&
+          (item.level === level || item.leadershipLevel === level)
+      );
+    });
+    return filteredData;
+  };
+
+  const filterDataByStatus = (status, data) => {
+    console.log("FILTER BY STATUS");
+    let filteredData = {};
+    Object.entries(data).forEach(([year, yearData]) => {
+      filteredData[year] = yearData.filter((item) => item.status === status);
+    });
+    return filteredData;
+  };
+
+  const filterDataByYear = (years, data) => {
+    console.log("FILTER BY STATUS");
+    let filteredData = {};
+    Object.entries(data).forEach(([year, yearData]) => {
+      filteredData[year] = yearData.filter((item) => item.year === years);
+    });
+    return filteredData;
+  };
+
+  const filterDataFunction = (theFilter, data) => {
+    if (!data) data = certificateBackup;
+    let filteredData = data;
+    if (theFilter.isLeadership !== undefined && theFilter.level !== undefined)
+      filteredData = filterDataByLevel(
+        theFilter.isLeadership,
+        theFilter.level,
+        data
+      );
+    if (theFilter?.status !== undefined)
+      filteredData = filterDataByStatus(theFilter.status, filteredData);
+    if (theFilter?.year !== undefined)
+      filteredData = filterDataByYear(theFilter.year, filteredData);
+    console.log(filteredData);
+    return filteredData;
+  };
 
   useEffect(() => {
     if (Object.keys(filterUpdate).length !== 0 && filterUpdate !== {})
-      setCertificates(filterDataByLevel(filterUpdate, certificateBackup));
+      setCertificates(filterDataFunction(filterUpdate, certificateBackup));
     else setCertificates(certificateBackup);
   }, [filterUpdate]);
 

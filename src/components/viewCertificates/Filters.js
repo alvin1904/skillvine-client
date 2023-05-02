@@ -3,7 +3,13 @@ import styles from "@/styles/student/ViewCertificates.module.css";
 import DropDown from "@/components/DropDown";
 import { getRandomNumber } from "@/utils/getRandomNumber";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
-import { levels, levels2, levels3, statuses } from "@/constants/data";
+import {
+  levels,
+  levels2,
+  levels3,
+  statuses,
+  yearOfStudy,
+} from "@/constants/data";
 
 export default function Filters({ setFilterUpdate }) {
   const ref1 = useRef(null);
@@ -13,11 +19,7 @@ export default function Filters({ setFilterUpdate }) {
   const { throwError } = useCustomError();
 
   const [arr1, setArr1] = useState(levels);
-  const [arr2, setArr2] = useState([
-    "National Initiatives",
-    "Sports & Games",
-    "Cultural & Literary",
-  ]);
+  const [arr2, setArr2] = useState(yearOfStudy);
 
   const [arr3, setArr3] = useState(statuses);
   const handleClear = () => {
@@ -42,13 +44,17 @@ export default function Filters({ setFilterUpdate }) {
     if (!ref1.current || !ref2.current || !ref3.current) return ErrorAction();
     const [t1, t2, t3] = findValues([ref1, ref2, ref3], [arr1, arr2, arr3]);
     if (t1 === "" && t2 === "" && t3 === "") return ErrorAction();
-    console.log([t1, t2, t3]);
+    // LEADERSHIP FILTER
     if (levels2.includes(t1))
       theFilter = { level: levels2.indexOf(t1) + 1, isLeadership: false };
     else if (levels3.includes(t1))
       theFilter = { level: levels3.indexOf(t1) + 1, isLeadership: true };
-    else throwError("Invalid filter option", status.WARNING);
-    if(statuses.includes(t3)) theFilter = {...theFilter, status: t3.toLowerCase()};
+    // YEAR AND STATUS FILTERS
+    if (yearOfStudy.includes(t2))
+      theFilter = { ...theFilter, year: yearOfStudy.indexOf(t2) + 1 };
+    if (statuses.includes(t3))
+      theFilter = { ...theFilter, status: t3.toLowerCase() };
+    console.log(theFilter);
     setFilterUpdate(theFilter);
   };
 
@@ -62,7 +68,7 @@ export default function Filters({ setFilterUpdate }) {
       />
       <DropDown
         array={arr2}
-        defaultText="Select event category"
+        defaultText="Select year"
         ulRef={ref2}
         clearSelection={clearSelection}
       />

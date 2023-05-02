@@ -9,6 +9,12 @@ export default function Navbar() {
   const router = useRouter();
   const size = 32;
 
+  const signOut = async () => {
+    localStorage.clear();
+    const response = await logoutAPI();
+    router.push("/login");
+  };
+
   return (
     <nav className={styles.nav}>
       {studentNavbar.map((item, index) => (
@@ -16,7 +22,7 @@ export default function Navbar() {
           key={index}
           className={styles.nav_logo}
           onClick={async () => {
-            if (item.page === studentNavbar[4].page) await logoutAPI();
+            if (item.page === studentNavbar[4].page) await signOut();
             goToPage(router, item.page);
           }}
         >
