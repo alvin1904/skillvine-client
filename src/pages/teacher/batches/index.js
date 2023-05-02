@@ -12,6 +12,7 @@ import useAxiosCaller from "@/utils/useAxiosCaller";
 import { getBatchesAPI, getStudentsAPI, logoutAPI } from "@/apis/teacher";
 import { formatArrayToObj } from "@/utils/arrayOperations";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
+import Head from "next/head";
 
 export default function batchesPage() {
   const router = useRouter();
@@ -56,6 +57,13 @@ export default function batchesPage() {
   };
   return (
     <div className={styles.selectorPage}>
+      <Head>
+        <title>
+          {selectMode === SelectMode.BATCH
+            ? "Select a batch!"
+            : "Select a student!"}
+        </title>
+      </Head>
       <div className={styles.selector}>
         <div className={styles.toolbar}>
           <div className={styles.btn} onClick={goBack}>

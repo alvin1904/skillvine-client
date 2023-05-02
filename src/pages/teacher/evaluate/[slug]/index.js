@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import useAxiosCaller from "@/utils/useAxiosCaller";
 import { getStudentsCertificatesAPI } from "@/apis/teacher";
+import Head from "next/head";
 
 export default function index() {
   const router = useRouter();
@@ -29,12 +30,20 @@ export default function index() {
       const response = await fetchData(getStudentsCertificatesAPI, slug);
       if (response.status === 200) setCertificates(response.data);
       else throwError(response?.data?.status);
+      console.log(response.data);
     };
     getBatches();
   }, []);
 
   return (
     <div className="teacher_view">
+      <Head>
+        <title>
+          {certificates && certificates.name
+            ? `${certificates.name}'s certificates`
+            : `Certificates`}
+        </title>
+      </Head>
       <div className="add_certificate">
         <SearchBar />
         <Filters />

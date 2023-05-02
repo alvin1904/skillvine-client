@@ -15,6 +15,7 @@ import { certCompStatus } from "@/constants/data";
 // import { getCertificatesAPI } from "@/apis";
 // import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import useCertificateFilter from "@/utils/useCertificatesProvider";
+import Head from "next/head";
 
 export default function certificates() {
   const {
@@ -26,9 +27,11 @@ export default function certificates() {
     loading,
   } = useCertificateFilter();
 
-
   return (
     <StudentLayout>
+      <Head>
+        <title>All Certificates</title>
+      </Head>
       <div className="add_certificate">
         <SearchBar />
         <Filters setFilterUpdate={setFilterUpdate} />

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import AddCertificate from "@/componentsUser/certificate/AddCertificate";
 import StudentLayout from "@/layouts/StudentLayout";
@@ -7,8 +7,11 @@ import React from "react";
 export default function addCertificates() {
   return (
     <StudentLayout>
+      <Head>
+        <title>Add a certificate</title>
+      </Head>
       <div className="add_certificate">
-       <AddCertificate />
+        <AddCertificate />
       </div>
     </StudentLayout>
   );

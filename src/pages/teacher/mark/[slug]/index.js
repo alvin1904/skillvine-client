@@ -1,7 +1,15 @@
-"use client"
+"use client";
 
+import Head from "next/head";
 import React from "react";
 
 export default function mark() {
-  return <div>mark</div>;
+  return (
+    <div>
+      <Head>
+        <title>Mark certificate</title>
+      </Head>
+      mark
+    </div>
+  );
 }

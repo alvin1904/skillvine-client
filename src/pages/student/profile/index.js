@@ -7,6 +7,7 @@ import { fetchProfileAPI } from "@/apis";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import Loadings from "@/components/Loading/Loadings";
 import ProfileComponent from "@/componentsUser/profile/ProfileComponent";
+import Head from "next/head";
 
 export default function profile() {
   const { loading, fetchData } = useAxiosCaller();
@@ -32,6 +33,9 @@ export default function profile() {
   else
     return (
       <StudentLayout>
+        <Head>
+          <title>Profile</title>
+        </Head>
         <div className="dashboard">
           <ProfileComponent
             profilePic={data.profileImage}
