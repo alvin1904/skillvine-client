@@ -7,6 +7,7 @@ import { takeFirstNCharacters } from "@/utils/getRandomNumber";
 import useAxiosCaller from "@/utils/useAxiosCaller";
 import { deleteCertificatesAPI } from "@/apis";
 import { status, useCustomError } from "../ErrorHandler/ErrorContext";
+import useCertificateFilter from "@/utils/useCertificatesProvider";
 
 export default function EachCertificate({
   id,
@@ -19,7 +20,6 @@ export default function EachCertificate({
   use,
 }) {
   const router = useRouter();
-  const { loading, fetchData } = useAxiosCaller();
   const { throwError } = useCustomError();
   const Icon = use === certCompStatus.MARK ? MdAssessment : MdEditDocument;
   const baseLink =
@@ -32,14 +32,11 @@ export default function EachCertificate({
       : "/student/certificates/";
   const goToDetails = () => router.push(baseLink2 + id);
   const handleEdit = () => router.push(baseLink + id);
+
+  const { handleDeleteCertificate, loading } = useCertificateFilter();
+
   const handleDelete = async () => {
-    const response = await fetchData(deleteCertificatesAPI, id);
-    if (response && response.status === 200)
-      throwError(
-        "Certificate deleted successfully! Changes will be updated shortly.",
-        status.SUCCESS
-      );
-    else throwError(response?.response?.status);
+    await handleDeleteCertificate(id);
   };
   return (
     <div

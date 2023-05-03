@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StudentLayout from "@/layouts/StudentLayout";
 import styles from "@/styles/student/CertificateList.module.css";
 import Loadings from "@/components/Loading/Loadings";
@@ -11,22 +11,31 @@ import Filters from "@/components/viewCertificates/Filters";
 import Indicators from "@/components/viewCertificates/Indicators";
 import EachCertificate from "@/components/viewCertificates/EachCertificate";
 import { certCompStatus } from "@/constants/data";
-// import useAxiosCaller from "@/utils/useAxiosCaller";
-// import { getCertificatesAPI } from "@/apis";
-// import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import useCertificateFilter from "@/utils/useCertificatesProvider";
 import Head from "next/head";
 
-export default function certificates() {
+export default function certificateData() {
   const {
-    certificateBackup,
-    certificates,
-    setCertificates,
-    filterUpdate,
+    refreshFn,
     setFilterUpdate,
     loading,
+    certificates,
+    setCertificates,
+    setCertificateBackup,
   } = useCertificateFilter();
   // entire login in the custom hook
+
+  const getData = async () => {
+    let response = await refreshFn();
+    if (response) {
+      setCertificates(response);
+      setCertificateBackup(response);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <StudentLayout>
@@ -36,7 +45,11 @@ export default function certificates() {
       <div className="add_certificate">
         <SearchBar />
         <Filters setFilterUpdate={setFilterUpdate} />
-        <Indicators />
+        <Indicators>
+          <button className="refreshBtn" onClick={getData}>
+            REFRESH
+          </button>
+        </Indicators>
         <Certificates use={certCompStatus.VIEW}>
           {loading ? (
             <Loadings />

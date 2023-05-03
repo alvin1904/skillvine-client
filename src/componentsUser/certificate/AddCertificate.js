@@ -3,6 +3,7 @@ import LeftAdd from "./LeftAdd";
 import RightAdd from "./RightAdd";
 import styles from "@/styles/student/AddCertificate.module.css";
 import useCertificateDealer from "@/utils/useCertificateDealer";
+import { useRouter } from "next/router";
 
 export default function AddCertificate() {
   const {
@@ -20,9 +21,11 @@ export default function AddCertificate() {
     ref9,
   } = useCertificateDealer();
 
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     await handleCertificateUpload();
+    router.push("/student/certificates")
   };
   return (
     <form className={styles.submit_certificate} onSubmit={handleSubmit}>

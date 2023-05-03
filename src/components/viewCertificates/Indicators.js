@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@/styles/student/ViewCertificates.module.css";
 import { certificateStatus } from "@/constants/data";
 
-export default function Indicators() {
+export default function Indicators({children}) {
   return (
     <>
       <div className={styles.indicators}>
@@ -18,6 +18,7 @@ export default function Indicators() {
             {status}
           </div>
         ))}
+        {children}
       </div>
       <br></br>
     </>

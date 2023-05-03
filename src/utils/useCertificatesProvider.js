@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import useAxiosCaller from "./useAxiosCaller";
-import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
-import { getCertificatesAPI } from "@/apis";
+import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
+import { deleteCertificatesAPI, getCertificatesAPI } from "@/apis";
 
 const useCertificateFilter = () => {
-  const [certificateBackup, setCertificateBackup] = useState({});
+  const [certificateBackup, setCertificateBackup] = useState([]);
   const [certificates, setCertificates] = useState([]);
   const [filterUpdate, setFilterUpdate] = useState("");
 
@@ -14,15 +14,13 @@ const useCertificateFilter = () => {
   const getCertificatesList = async () => {
     const response = await fetchData(getCertificatesAPI);
     console.log(response);
-    if (response.status === 200) {
+    if ([200, 304].includes(response?.status)) {
       setCertificates(response.data?.points);
       setCertificateBackup(response.data?.points);
+      return response.data?.points;
     } else throwError(response?.response?.status);
+    return [];
   };
-
-  useEffect(() => {
-    getCertificatesList();
-  }, []);
 
   const filterDataByLevel = (isLeadership, level, data) => {
     console.log("FILTER BY LEVEL");
@@ -78,13 +76,26 @@ const useCertificateFilter = () => {
     else setCertificates(certificateBackup);
   }, [filterUpdate]);
 
+  const handleDeleteCertificate = async (id) => {
+    const response = await fetchData(deleteCertificatesAPI, id);
+    if (response && response.status === 200) {
+      throwError(
+        "Certificate deleted successfully! Changes will be updated shortly.",
+        status.SUCCESS
+      );
+    } else throwError(response?.response?.status);
+  };
+
   return {
     certificateBackup,
+    setCertificateBackup,
     certificates,
     setCertificates,
     filterUpdate,
     setFilterUpdate,
     loading,
+    handleDeleteCertificate,
+    refreshFn: getCertificatesList,
   };
 };
 

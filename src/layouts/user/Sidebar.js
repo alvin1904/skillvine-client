@@ -16,7 +16,7 @@ export default function Sidebar() {
       setTargetScore(response?.data?.targetScore);
       setCurrentScore(response?.data?.currentScore);
     } else if (response?.response?.status === 401)
-      throwError("Please login & try again!");
+      console.log("Please login & try again!");
     else throwError(response?.response?.status);
   };
 

@@ -25,7 +25,7 @@ export default function ProfileComponent({
   return (
     <div className={styles.profile}>
       <div className={styles.profile_dp}>
-        {<Image src={profilePic || defaultPic} height={250} width={250} />}
+        {<Image src={profilePic || defaultPic} height={250} width={250} alt="Profile Image"/>}
       </div>
       <div className={styles.profile_name}>
         <h5>{name && "Welcome,"}</h5>

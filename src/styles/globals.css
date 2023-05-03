@@ -353,3 +353,16 @@ body {
     padding: 0.25rem;
   }
 }
+.refreshBtn{
+  all: unset;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--clr-primary-400);
+  color: var(--clr-primary-400);
+}
+.refreshBtn:hover{
+  background-color: var(--clr-primary-400);
+  color: var(--clr-light);
+}
