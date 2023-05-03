@@ -1,39 +1,75 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/student/AddCertificate.module.css";
-import DropDown from "@/components/DropDown";
+import { levels2, levels3, yearOfStudy } from "@/constants/data";
+import DropDown2 from "@/components/DropDown2";
+import Loadings from "@/components/Loading/Loadings";
+import { removeArrayDuplicates } from "@/utils/removeArrayDuplicates";
 
-export default function RightEdit() {
-  const ref0 = useRef(null);
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const pdfRef = useRef(null);
-  const array0 = ["First Year", "Second Year", "Third Year", "Fourth Year"];
-  const array1 = [
-    "National Initiatives Participation",
-    "Sports & Games",
-    "Cultural Festivals",
-    "Workshops & Seminars",
-    "Other Events",
-  ];
-  const array2 = [
-    "NCC",
-    "NSS",
-    "Sports - Participation",
-    "Sports - 1st Prize",
-    "Sports - 2nd Prize",
-  ];
-  const array3 = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5"];
+export default function RightEdit({
+  ref5,
+  ref6,
+  ref7,
+  ref8,
+  ref9,
+  categoryData,
+  loading,
+}) {
+  const [YOS, setYOS] = useState("Select year of study");
+  const [activityHead, setActivityHead] = useState([]);
+  const [activityHSelected, setActivityHSelected] = useState("Select category");
+  const [activity, setActivity] = useState([]);
+  const [activitySelected, setActivitySelected] = useState("Select event");
+  const [levels, setLevels] = useState([]);
+  const [levelsSelected, setLevelsSelected] = useState("Select level");
+
+  useEffect(() => {
+    const temp = categoryData.map((item) => item.activityHead);
+    const temp2 = removeArrayDuplicates(temp);
+    setActivityHead(temp2);
+  }, [categoryData]);
+
+  useEffect(() => {
+    const temp = categoryData.filter(
+      (category) => category.activityHead === activityHSelected
+    );
+    const temp2 = temp.map((item) => item.activity);
+    setActivity(temp2);
+  }, [activityHSelected]);
+
+  useEffect(() => {
+    const temp = categoryData.filter(
+      (category) => category.activity === activitySelected
+    );
+    const temp2 = temp[0]?.isLeadership;
+    !temp2 ? setLevels(levels2) : setLevels(levels3);
+  }, [activitySelected]);
+  
   return (
     <div className={styles.RightAdd}>
-      <DropDown
-        array={array0}
-        defaultText="Select academic year"
-        ulRef={ref0}
+      <DropDown2
+        array={yearOfStudy}
+        ulRef={ref5}
+        optionSelected={YOS}
+        setOptionSelected={setYOS}
       />
-      <DropDown array={array1} defaultText="Select event type" ulRef={ref1} />
-      <DropDown array={array2} defaultText="Select event" ulRef={ref2} />
-      <DropDown array={array3} defaultText="Select level" ulRef={ref3} />
+      <DropDown2
+        array={activityHead}
+        ulRef={ref6}
+        optionSelected={activityHSelected}
+        setOptionSelected={setActivityHSelected}
+      />
+      <DropDown2
+        array={activity}
+        ulRef={ref7}
+        optionSelected={activitySelected}
+        setOptionSelected={setActivitySelected}
+      />
+      <DropDown2
+        array={levels}
+        ulRef={ref8}
+        optionSelected={levelsSelected}
+        setOptionSelected={setLevelsSelected}
+      />
 
       <div className={styles.fileUploader}>
         <label
@@ -47,11 +83,11 @@ export default function RightEdit() {
           type="file"
           className={styles.fileUpload}
           accept=".jpg, .jpeg, .png, application/pdf"
-          ref={pdfRef}
+          ref={ref9}
         />
       </div>
       <button type="submit" className={styles.submitBtn}>
-        Upload the certificate
+        {loading ? <Loadings /> : `Update certificate details`}
       </button>
     </div>
   );

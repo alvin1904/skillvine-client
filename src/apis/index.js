@@ -46,6 +46,8 @@ export const getScoreAPI = () =>
 // CERTIFICATES
 export const uploadCertificateAPI = (formdata) =>
   api2.post("/students/certificates", formdata, { withCredentials: true });
+export const editCertificateAPI = (formdata, id) =>
+  api2.patch(`/students/certificates/${id}`, formdata, { withCredentials: true });
 export const getCertificatesAPI = () =>
   api.get("/students/certificates", { withCredentials: true });
 export const getCertificateAPI = (id) =>

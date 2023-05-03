@@ -5,6 +5,20 @@
   display: grid;
   grid-auto-flow: column;
   font-size: 0.95em;
+  align-content: start;
+}
+.submit_certificate_loading {
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+  padding: 0.5em 0em;
+  display: grid;
+  grid-auto-flow: column;
+  font-size: 0.95em;
+  height: 100%;
+  align-content: center;
+}
+.LeftAdd{
+  height: 100%;
 }
 .LeftAdd > div > input,
 .LeftAdd > div > textarea,
