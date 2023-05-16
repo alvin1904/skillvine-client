@@ -316,12 +316,13 @@ body {
 }
 
 /* ADD CERTIFICATES */
-.add_certificate, .dashboard {
+.add_certificate,
+.dashboard {
   height: 100%;
   width: 100%;
   margin: 0;
 }
-.student_pages::-webkit-scrollbar{
+.student_pages::-webkit-scrollbar {
   width: 0;
 }
 @media (max-width: 768px) {
@@ -342,18 +343,18 @@ body {
 }
 
 /* TEACHER VIEW */
-.teacher_view{
+.teacher_view {
   padding: 2rem;
   height: 100vh;
   width: 100%;
   overflow-y: scroll;
 }
-@media(max-width: 768px){
-  .teacher_view{
+@media (max-width: 768px) {
+  .teacher_view {
     padding: 0.25rem;
   }
 }
-.refreshBtn{
+.refreshBtn {
   all: unset;
   cursor: pointer;
   transition: all 100ms ease-in-out;
@@ -362,7 +363,61 @@ body {
   border: 1px solid var(--clr-primary-400);
   color: var(--clr-primary-400);
 }
-.refreshBtn:hover{
+.refreshBtn:hover {
   background-color: var(--clr-primary-400);
   color: var(--clr-light);
+}
+
+/* TEACHER NAVBAR */
+.teacher_navbar {
+  height: 50px;
+  margin: 5px 0px;
+  padding: 0px 8px;
+  background-color: var(--clr-primary-100);
+  border-radius: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.teacher_navbar p {
+  color: var(--clr-dark);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.tNavbar_buttons {
+  display: grid;
+  grid-auto-flow: column;
+}
+.tNavbar_button {
+  font-size: 0.9rem;
+  background-color: var(--clr-primary-250);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 6px 15px;
+  border-radius: 5px;
+  transition: all 100ms ease-in-out;
+}
+.tNavbar_button:hover {
+  color: var(--clr-primary-250);
+  background-color: white;
+}
+.tNavbar_buttons {
+  gap: 1rem;
+}
+@media (max-width: 480px) {
+  .tNavbar_button {
+    padding: 2px 5px;
+  }
+  .tNavbar_buttons {
+    gap: 0.25rem;
+  }
+  .tNavbar_button {
+    font-size: 0.9rem;
+  }
+  .teacher_navbar p {
+    font-size: 1rem;
+  }
 }

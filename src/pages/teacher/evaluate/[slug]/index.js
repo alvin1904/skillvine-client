@@ -15,6 +15,7 @@ import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import useAxiosCaller from "@/utils/useAxiosCaller";
 import { getStudentsCertificatesAPI } from "@/apis/teacher";
 import Head from "next/head";
+import TeacherNavbar from "@/layouts/TeacherNavbar";
 
 export default function index() {
   const router = useRouter();
@@ -36,56 +37,63 @@ export default function index() {
   }, []);
 
   return (
-    <div className="teacher_view">
-      <Head>
-        <title>
-          {certificates && certificates.name
-            ? `${certificates.name}'s certificates`
-            : `Certificates`}
-        </title>
-      </Head>
-      <div className="add_certificate">
-        <SearchBar />
-        <Filters />
-        <Indicators />
-        <Certificates use={certCompStatus.MARK}>
-          {loading ? (
-            <Loadings />
-          ) : (
-            certificates &&
-            certificates.points &&
-            (certificates.length === 0 ||
-            Object.entries(certificates.points) < 0 ? (
-              <NothingFound />
+    <>
+      <TeacherNavbar
+        name={certificates?.name}
+        ktuId={certificates?.ktuId}
+        slug={slug}
+      />
+      <div className="teacher_view">
+        <Head>
+          <title>
+            {certificates && certificates.name
+              ? `${certificates.name}'s certificates`
+              : `Certificates`}
+          </title>
+        </Head>
+        <div className="add_certificate">
+          <SearchBar />
+          <Filters />
+          <Indicators />
+          <Certificates use={certCompStatus.MARK}>
+            {loading ? (
+              <Loadings />
             ) : (
-              Object.entries(certificates.points).map(
-                ([year, certificates]) => (
-                  <div key={year}>
-                    <h2 className={styles.year__key}>{year}</h2>
-                    {certificates.map((certificate) => (
-                      <EachCertificate
-                        key={certificate._id}
-                        id={certificate._id}
-                        name={certificate.certificateName}
-                        date={certificate.createdAt}
-                        activity={certificate?.category?.activity || ""}
-                        level={
-                          certificate.isLeadership
-                            ? certificate.leadershipLevel
-                            : certificate.level
-                        }
-                        isLeadership={certificate.isLeadership}
-                        statuse={certificate.status}
-                        use={certCompStatus.MARK}
-                      />
-                    ))}
-                  </div>
+              certificates &&
+              certificates.points &&
+              (certificates.length === 0 ||
+              Object.entries(certificates.points) < 0 ? (
+                <NothingFound />
+              ) : (
+                Object.entries(certificates.points).map(
+                  ([year, certificates]) => (
+                    <div key={year}>
+                      <h2 className={styles.year__key}>{year}</h2>
+                      {certificates.map((certificate) => (
+                        <EachCertificate
+                          key={certificate._id}
+                          id={certificate._id}
+                          name={certificate.certificateName}
+                          date={certificate.createdAt}
+                          activity={certificate?.category?.activity || ""}
+                          level={
+                            certificate.isLeadership
+                              ? certificate.leadershipLevel
+                              : certificate.level
+                          }
+                          isLeadership={certificate.isLeadership}
+                          statuse={certificate.status}
+                          use={certCompStatus.MARK}
+                        />
+                      ))}
+                    </div>
+                  )
                 )
-              )
-            ))
-          )}
-        </Certificates>
+              ))
+            )}
+          </Certificates>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

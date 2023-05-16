@@ -23,6 +23,10 @@ export default function Home() {
       text: "Register details",
       link: "/register/details",
     },
+    {
+      text: "Teacher certificates",
+      link: "/teacher/evaluate/6462ba7c9d57cf71d1031260",
+    },
   ];
   return (
     <>
