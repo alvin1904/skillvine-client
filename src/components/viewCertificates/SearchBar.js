@@ -3,7 +3,7 @@ import styles from "@/styles/student/ViewCertificates.module.css";
 import { IoSearchOutline } from "react-icons/io5";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
-export default function SearchBar() {
+export default function SearchBar({onSearch}) {
   const inputRef = useRef();
   const { throwError } = useCustomError();
 
@@ -14,6 +14,7 @@ export default function SearchBar() {
       throwError("Please enter a valid search parameter", status.WARNING);
       return;
     }
+    onSearch(searchParam)
   };
 
   return (

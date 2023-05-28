@@ -13,6 +13,7 @@ import EachCertificate from "@/components/viewCertificates/EachCertificate";
 import { certCompStatus } from "@/constants/data";
 import useCertificateFilter from "@/utils/useCertificatesProvider";
 import Head from "next/head";
+import searchCertificates from "@/utils/search";
 
 export default function certificateData() {
   const {
@@ -20,6 +21,7 @@ export default function certificateData() {
     setFilterUpdate,
     loading,
     certificates,
+    certificateBackup,
     setCertificates,
     setCertificateBackup,
   } = useCertificateFilter();
@@ -37,13 +39,24 @@ export default function certificateData() {
     getData();
   }, []);
 
+  const onSearch = (searchValue) => {
+    if (searchValue !== "") {
+      let filteredCertificates = searchCertificates(
+        certificateBackup,
+        searchValue
+      );
+      // THE SEARCH MODULE
+      setCertificates(filteredCertificates);
+    }
+    else setCertificates(certificateBackup)
+  };
   return (
     <StudentLayout>
       <Head>
         <title>All Certificates</title>
       </Head>
       <div className="add_certificate">
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
         <Filters setFilterUpdate={setFilterUpdate} />
         <Indicators>
           <button className="refreshBtn" onClick={getData}>
