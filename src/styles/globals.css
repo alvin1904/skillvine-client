@@ -370,11 +370,12 @@ body {
 
 /* TEACHER NAVBAR */
 .teacher_navbar {
-  height: 50px;
-  margin: 5px 0px;
+  height: 60px;
+  margin: 0px;
+  margin-bottom: 5px;
   padding: 0px 8px;
   background-color: var(--clr-primary-100);
-  border-radius: 10px;
+  border-radius: 0px 0px 15px 15px;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: auto auto;
@@ -382,27 +383,33 @@ body {
   justify-content: space-between;
 }
 .teacher_navbar p {
-  color: var(--clr-dark);
+  color: var(--clr-primary-250);
   font-size: 1.2rem;
   font-weight: 600;
+  text-transform: uppercase;
+}
+.teacher_navbar p span{
+  font-weight: 400;
 }
 .tNavbar_buttons {
   display: grid;
   grid-auto-flow: column;
 }
 .tNavbar_button {
-  font-size: 0.9rem;
-  background-color: var(--clr-primary-250);
-  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--clr-primary-250);
   border: none;
   outline: none;
   padding: 6px 15px;
   border-radius: 5px;
+  border: 2px solid var(--clr-primary-250);
+  outline: none;
   transition: all 100ms ease-in-out;
 }
 .tNavbar_button:hover {
-  color: var(--clr-primary-250);
-  background-color: white;
+  color: var(--clr-primary-100);
+  background-color: var(--clr-primary-250);
 }
 .tNavbar_buttons {
   gap: 1rem;

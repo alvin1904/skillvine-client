@@ -16,6 +16,7 @@ import useAxiosCaller from "@/utils/useAxiosCaller";
 import { getStudentsCertificatesAPI } from "@/apis/teacher";
 import Head from "next/head";
 import TeacherNavbar from "@/layouts/TeacherNavbar";
+import searchCertificates from "@/utils/search";
 
 export default function index() {
   const router = useRouter();
@@ -23,18 +24,36 @@ export default function index() {
 
   const { throwError } = useCustomError();
   const { loading, fetchData } = useAxiosCaller();
-  const [certificates, setCertificates] = useState();
+  const [certificates, setCertificates] = useState([]);
+  const [certificateBackup, setCertificatesBackup] = useState([]);
+
+  const getBatches = async () => {
+    console.log(slug);
+    const response = await fetchData(getStudentsCertificatesAPI, slug);
+    if (response.status === 200) {
+      let temp = response.data;
+      setCertificates(temp);
+      setCertificatesBackup(temp);
+    } else throwError(response?.data?.status);
+    console.log(response.data);
+  };
 
   useEffect(() => {
-    const getBatches = async () => {
-      console.log(slug);
-      const response = await fetchData(getStudentsCertificatesAPI, slug);
-      if (response.status === 200) setCertificates(response.data);
-      else throwError(response?.data?.status);
-      console.log(response.data);
-    };
     getBatches();
   }, []);
+
+  const onSearch = (searchValue) => {
+    console.log(certificateBackup);
+    if (searchValue !== "") {
+      let temp = searchCertificates(certificateBackup.points, searchValue);
+      const filteredCertificates = {
+        ...certificateBackup,
+        points: temp,
+      };
+      // THE SEARCH MODULE
+      setCertificates(filteredCertificates);
+    } else setCertificates(certificateBackup);
+  };
 
   return (
     <>
@@ -52,12 +71,19 @@ export default function index() {
           </title>
         </Head>
         <div className="add_certificate">
-          <SearchBar />
+          <SearchBar onSearch={onSearch} />
           <Filters />
-          <Indicators />
+          <Indicators>
+            <button className="refreshBtn" onClick={getBatches}>
+              REFRESH
+            </button>
+          </Indicators>
           <Certificates use={certCompStatus.MARK}>
             {loading ? (
-              <Loadings />
+              <>
+                <br></br>
+                <Loadings />
+              </>
             ) : (
               certificates &&
               certificates.points &&

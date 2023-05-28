@@ -72,7 +72,7 @@ export default function batchesPage() {
           </div>
           Select a {selectMode}:
           <div className={styles.btn} onClick={signOut}>
-            <IoIosExit size={30} />
+            <IoIosExit size={30} /> <span>SIGN{" "}OUT</span>
           </div>
         </div>
         {loading ? (

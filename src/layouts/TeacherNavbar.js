@@ -13,14 +13,14 @@ function TeacherNavbar({ name = "Student", ktuId = "KTU ID", slug }) {
   return (
     <div className="teacher_navbar">
       <p>
-        {name} ({ktuId})
+        {name} <span>({ktuId})</span>
       </p>
       <div className="tNavbar_buttons">
         <button className="tNavbar_button" onClick={handleReport}>
-          Generate report
+          GENERATE REPORT
         </button>
         <button className="tNavbar_button" onClick={handleBack}>
-          Go Back
+          GO BACK
         </button>
       </div>
     </div>

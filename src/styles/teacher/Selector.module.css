@@ -34,6 +34,15 @@
 }
 .btn {
   cursor: pointer;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: end;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  color: var(--clr-primary-100);
 }
 .folders {
   display: grid;
