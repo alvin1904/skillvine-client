@@ -12,7 +12,6 @@ export default function CertificateMarkInfo({ data }) {
         <InfoDisplay label={"Certificate Name"} data={data.certificateName} />
         <InfoDisplay label={"Date of event"} data={data.participationDate} />
         <InfoDisplay label={"Duration of event"} data={data.duration} />
-        <InfoDisplay label={"Year of study"} data={data.year} />
         <InfoDisplay label={"Description"} data={data.certificateDescription} />
         <br></br>
         <h1>Certificate Link</h1>

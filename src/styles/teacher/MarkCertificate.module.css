@@ -11,6 +11,7 @@
   justify-content: center;
   align-content: center;
   text-align: center;
+  justify-items: center;
 }
 .white {
   background-color: white;
@@ -50,7 +51,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
   }
-  .markInfo{
+  .markInfo {
     padding: 6rem 0rem;
   }
   .info {
@@ -59,4 +60,40 @@
   .info p {
     width: 220px;
   }
+}
+.btn {
+  border: 1px solid var(--clr-primary-400);
+  color: black;
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0.75rem;
+}
+.loading {
+  animation: spin 1s ease;
+  animation-iteration-count: infinite;
+}
+.btn span{
+  height: 18px;
+  width: 18px;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.inputBox{
+  border: 1px solid var(--clr-primary-400);
+  width: 75px;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
 }

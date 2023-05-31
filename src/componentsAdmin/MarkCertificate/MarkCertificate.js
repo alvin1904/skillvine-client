@@ -37,10 +37,10 @@ export default function MarkCertificate({ slug }) {
       participationDate: takeFirstNCharacters(details.participationDate, 10),
       duration: details.duration,
       certificateDescription: details.certificateDescription,
-      year: details.year,
       certificateUrl: details.certificateUrl,
     };
     const data2 = {
+      year: details.year,
       category: details.category,
       isLeadership: details.isLeadership,
       level: details.level,
