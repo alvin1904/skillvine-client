@@ -27,6 +27,10 @@ export default function Home() {
       text: "Teacher certificates",
       link: "/teacher/evaluate/6462ba7c9d57cf71d1031260",
     },
+    {
+      text: "Teacher marking",
+      link: "/teacher/mark/6462bb039d57cf71d1031286",
+    }
   ];
   return (
     <>

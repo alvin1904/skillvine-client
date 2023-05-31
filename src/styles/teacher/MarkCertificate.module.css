@@ -1,0 +1,62 @@
+.add_certificate_form {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  color: var(--clr-primary-500);
+}
+.markInfo {
+  background-color: var(--clr-primary-100);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.white {
+  background-color: white;
+}
+.markInfo h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--clr-primary-500);
+}
+.info {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.info p {
+  font-weight: 400;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  width: 300px;
+}
+.info label {
+  width: 100%;
+  text-align: end;
+}
+.link {
+  text-decoration: underline;
+  color: var(--clr-primary-250);
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .add_certificate_form {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .markInfo{
+    padding: 6rem 0rem;
+  }
+  .info {
+    grid-template-columns: 1fr 2fr;
+  }
+  .info p {
+    width: 220px;
+  }
+}
