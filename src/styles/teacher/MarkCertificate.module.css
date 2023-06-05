@@ -96,4 +96,20 @@
   height: 40px;
   border-radius: 5px;
   text-align: center;
+  margin: 5px 0px;
+}
+.btn2{
+  background-color: white;
+  border: 1px solid var(--clr-primary-250);
+  padding: 10px 30px;
+  margin: 10px;
+  border-radius: 5px;
+  transition: 0.1s all ease-in-out;
+}
+.btn2:hover{
+  background-color: var(--clr-primary-250);
+  color: white;
+}
+.btnHolder{
+  margin: 15px 0px;
 }

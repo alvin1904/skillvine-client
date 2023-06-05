@@ -3,8 +3,21 @@ import Categories from "./Categories";
 import useCertificateDealer from "./EditCertificateLogic";
 import { GrUpdate } from "react-icons/gr";
 import { useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { getFromLS, removeFromLS } from "@/utils/LSOperations";
 
-export default function CertificateMarkForm({data}) {
+const Buttons = ({ handleBack, handleSubmit }) => (
+  <div className={styles.btnHolder}>
+    <button className={styles.btn2} onClick={handleBack}>
+      Go Back
+    </button>
+    <button className={styles.btn2} onClick={handleSubmit}>
+      Mark Certificate
+    </button>
+  </div>
+);
+
+export default function CertificateMarkForm({ data }) {
   const { handlePointsUpdate, categoryData, ref1, ref2, ref3, ref4 } =
     useCertificateDealer();
   const [load, setLoad] = useState(false);
@@ -16,6 +29,15 @@ export default function CertificateMarkForm({data}) {
       inputRef.current.value = data;
       setLoad(false);
     }, 1340);
+  };
+
+  const router = useRouter();
+  const handleSubmit = () => {};
+  const handleBack = () => {
+    const token = "student_session";
+    const session = getFromLS(token);
+    if (session && typeof session !== undefined)
+      router.push(`/teacher/evaluate/${session}`);
   };
   return (
     <div className={`${styles.markInfo} ${styles.white}`}>
@@ -38,6 +60,7 @@ export default function CertificateMarkForm({data}) {
       <h1>Certificate Marking</h1>
       <p>The points based on the categories are:</p>
       <input className={styles.inputBox} type="text" ref={inputRef} />
+      <Buttons handleSubmit={handleSubmit} handleBack={handleBack} />
     </div>
   );
 }

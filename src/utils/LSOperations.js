@@ -1,13 +1,16 @@
 export const addToLS = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
+  if (typeof window !== "undefined")
+    localStorage.setItem(key, JSON.stringify(value));
 };
 
 export const getFromLS = (key) => {
   const value =
-    typeof window !== "undefined"
-      ? window.localStorage.getItem(key)
-      : false;
+    typeof window !== "undefined" ? window.localStorage.getItem(key) : false;
   if (value) return JSON.parse(value);
+};
+
+export const removeFromLS = (key) => {
+  if (typeof window !== "undefined") localStorage.removeItem(key);
 };
 
 export const addSTokenToLink = (link) => {

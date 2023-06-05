@@ -17,11 +17,12 @@ import { getStudentsCertificatesAPI } from "@/apis/teacher";
 import Head from "next/head";
 import TeacherNavbar from "@/layouts/TeacherNavbar";
 import searchCertificates from "@/utils/search";
+import { addToLS } from "@/utils/LSOperations";
 
 export default function index() {
   const router = useRouter();
   const { slug } = router.query;
-
+  addToLS("student_session", slug)
   const { throwError } = useCustomError();
   const { loading, fetchData } = useAxiosCaller();
   const [certificates, setCertificates] = useState([]);
