@@ -53,34 +53,77 @@ const useCertificateDealer = () => {
 
   // RETURNING POINTS
   const updatePoints = () => {
-    if (validateData) {
+    if (validateData && ref3?.current?.innerText !== "") {
       const category = categoryData.find(
         (category) => category.activity === ref3?.current?.innerText
       );
-      const levelIndex = levels2.indexOf(ref4.current?.innerText) + 1 || 0;
-      const leadershipValue = ref4.current?.innerText;
-      const data = category.isLeadership
-        ? category.leadershipPoints[camelCaseConvert(leadershipValue)]
-        : category.activityPoints[`level${levelIndex}`];
-      return data;
+      console.log(category);
+      console.log(ref3?.current?.innerText);
+      if (category) {
+        const levelIndex = levels2.indexOf(ref4.current?.innerText) + 1 || 0;
+        const leadershipValue = ref4.current?.innerText;
+        const data = category.isLeadership
+          ? category.leadershipPoints[camelCaseConvert(leadershipValue)]
+          : category.activityPoints[`level${levelIndex}`];
+        return data;
+      } else throwError("Invalid selection of category. Chose again!");
     }
   };
 
-  const findPoints = ({ activity, leadershipLevel, level }) => {
+  const findPoints = (activity, leadershipLevel, level) => {
     const category = categoryData.find(
       (category) => category.activity === activity
     );
-    const levelIndex = level;
-    const leadershipIndex = leadershipLevel;
-    const val = category.isLeadership
-      ? category.leadershipPoints[camelCaseConvert(leadershipIndex)]
-      : category.activityPoints[`level${levelIndex}`];
+    if (category) {
+      const levelIndex = level;
+      const leadershipIndex = leadershipLevel;
+      const val = category.isLeadership
+        ? category.leadershipPoints[camelCaseConvert(leadershipIndex)]
+        : category.activityPoints[`level${levelIndex}`];
 
-    return val;
+      return val;
+    } else throwError("Invalid selection of category. Chose again!");
+    return "";
   };
 
+  const getDataForSubmission = (
+    points,
+    remarks,
+    activity,
+    leadershipLevel,
+    level,
+    isLeadership,
+    defaultYear
+  ) => {
+    const category = categoryData.find(
+      (category) => category.activity === ref3?.current?.innerText
+    );
+    if (!category || typeof category === "undefined") {
+      return {
+        categoryId: activity,
+        level: level,
+        leadershipLevel: leadershipLevel,
+        isLeadership: isLeadership,
+        points: points,
+        status: "approved",
+        year: defaultYear,
+        remarks: remarks,
+      }; // CODE FOR FIRST TIME
+    } else
+      return {
+        categoryId: category._id,
+        level: levels2.indexOf(ref4.current?.innerText) + 1 || 0,
+        leadershipLevel: ref4.current?.innerText,
+        isLeadership: category.isLeadership,
+        points: points,
+        status: "approved",
+        year: yearOfStudy.indexOf(ref1.current?.innerText) + 1 || 0,
+        remarks: remarks,
+      }; // CODE IF DROPDOWN VALUE HAS BEEN CHANGED ANYTIME
+  };
   return {
     loading,
+    getDataForSubmission,
     handlePointsUpdate: updatePoints,
     findPoints,
     categoryData,

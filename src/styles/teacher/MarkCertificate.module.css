@@ -12,6 +12,7 @@
   align-content: center;
   text-align: center;
   justify-items: center;
+  position: relative;
 }
 .white {
   background-color: white;
@@ -78,7 +79,7 @@
   animation: spin 1s ease;
   animation-iteration-count: infinite;
 }
-.btn span{
+.btn span {
   height: 18px;
   width: 18px;
 }
@@ -90,26 +91,48 @@
     transform: rotate(360deg);
   }
 }
-.inputBox{
-  border: 1px solid var(--clr-primary-400);
+.inputBox {
+  border: 1px solid var(--clr-primary-250);
   width: 75px;
   height: 40px;
   border-radius: 5px;
   text-align: center;
   margin: 5px 0px;
 }
-.btn2{
+.btn2,
+.btn3 {
   background-color: white;
   border: 1px solid var(--clr-primary-250);
-  padding: 10px 30px;
+  padding: 10px 20px;
   margin: 10px;
   border-radius: 5px;
   transition: 0.1s all ease-in-out;
+  text-transform: uppercase;
 }
-.btn2:hover{
+.btn2:hover,
+.btn3:hover {
   background-color: var(--clr-primary-250);
   color: white;
 }
-.btnHolder{
-  margin: 15px 0px;
+.btnHolder {
+  margin-top: 10px;
+}
+.remark {
+  padding: 10px;
+  width: 33vw;
+  border: 1px solid var(--clr-primary-250);
+  border-radius: 5px;
+}
+.remark::placeholder {
+  opacity: 0.75;
+}
+@media screen and (max-width: 767px) {
+  .remark {
+    width: 78vw;
+  }
+}
+.btn3 {
+  position: absolute;
+  top: 1em;
+  left: 1em;
 }

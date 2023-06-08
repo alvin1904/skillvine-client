@@ -50,7 +50,7 @@ export default function MarkCertificate({ slug }) {
       <div className="add_certificate h-100">
         <div className={styles.add_certificate_form}>
           <CertificateMarkInfo data={data1} />
-          <CertificateMarkForm data={data2} />
+          <CertificateMarkForm data={data2} certId={slug}/>
         </div>
       </div>
     );

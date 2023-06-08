@@ -11,7 +11,9 @@ export default function Categories({
   ref4,
   data,
 }) {
-  const [YOS, setYOS] = useState(data?.year || "Select year of study");
+  const [YOS, setYOS] = useState(
+    yearOfStudy[data?.year - 1] || "Select year of study"
+  );
   const [activityHead, setActivityHead] = useState([]);
   const [activityHSelected, setActivityHSelected] = useState(
     data?.category.activityHead || "Select category"

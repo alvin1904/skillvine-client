@@ -1,9 +1,17 @@
-import { addTTokenToLink } from "@/utils/LSOperations";
+import { addTTokenToLink, getFromLS } from "@/utils/LSOperations";
 import InfoDisplay from "./InfoDisplay";
 import styles from "@/styles/teacher/MarkCertificate.module.css";
+import { useRouter } from "next/router";
 
 export default function CertificateMarkInfo({ data }) {
   const openLink = () => window.open(addTTokenToLink(data.certificateUrl));
+  const router = useRouter()
+  const handleBack = () => {
+    const token = "student_session";
+    const session = getFromLS(token);
+    if (session && typeof session !== undefined)
+      router.push(`/teacher/evaluate/${session}`);
+  };
   if (data)
     return (
       <div className={styles.markInfo}>
@@ -22,6 +30,9 @@ export default function CertificateMarkInfo({ data }) {
             Certificate PDF/Image!
           </span>
         </p>
+        <button className={styles.btn3} onClick={handleBack}>
+          Go Back
+        </button>
       </div>
     );
 }
