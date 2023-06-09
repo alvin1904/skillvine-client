@@ -24,8 +24,8 @@ export default function AddCertificate() {
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleCertificateUpload();
-    router.push("/student/certificates")
+    const isSuccess = await handleCertificateUpload();
+    if (isSuccess) router.push("/student/certificates");
   };
   return (
     <form className={styles.submit_certificate} onSubmit={handleSubmit}>

@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import {
   editCertificateAPI,
@@ -135,9 +135,11 @@ const useCertificateDealer = () => {
 
     const response = await fetchData(uploadCertificateAPI, formData);
     console.log(response);
-    if (response.status == 200)
+    if (response.status == 200) {
       throwError("Certificate added successfully", status.SUCCESS);
-    else throwError(response.data?.status || response.response.status);
+      return true;
+    } else throwError(response.data?.status || response.response.status);
+    return false;
   };
 
   const handleEdit = async (id) => {

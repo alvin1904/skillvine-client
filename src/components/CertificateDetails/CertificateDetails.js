@@ -62,7 +62,7 @@ export default function CertificateDetails({ use, slug }) {
             <h1>Certificate Evaluation Status</h1>
             <p>Status: {certificate?.status?.toUpperCase()}</p>
             <p>Points(if marked): {certificate?.points}</p>
-            <p>Last verified by(if marked): {certificate?.lastVerifiedBy}</p>
+            <p>Last verified by(if marked): {certificate?.lastVerifiedBy?.name}</p>
           </>
         </div>
         {use === users.STUDENT ? (
