@@ -87,6 +87,7 @@ export default function certificateData() {
                           : certificate.level
                       }
                       isLeadership={certificate.isLeadership}
+                      statusOfCertificate={certificate.status}
                       statuse={certificate.status}
                       use={certCompStatus.VIEW}
                     />

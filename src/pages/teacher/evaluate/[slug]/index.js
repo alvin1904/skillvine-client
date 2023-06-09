@@ -111,6 +111,7 @@ export default function index() {
                           isLeadership={certificate.isLeadership}
                           statuse={certificate.status}
                           use={certCompStatus.MARK}
+                          statusOfCertificate={"pending"}
                         />
                       ))}
                     </div>
