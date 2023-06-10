@@ -37,7 +37,7 @@ export default function EachCertificate({
 
   const goToDetails = () => router.push(baseLink2 + id);
   const handleEdit = () =>
-    show && use === certCompStatus.MARK
+    show || use === certCompStatus.MARK
       ? router.push(baseLink + id)
       : console.log("Err");
 
