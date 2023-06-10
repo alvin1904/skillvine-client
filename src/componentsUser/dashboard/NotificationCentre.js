@@ -37,7 +37,7 @@ export default function NotificationCentre() {
     <>
       <div className={styles.notification__content}>
         {loading ? (
-          <Loadings />
+          <Loadings color="var(--clr-primary-200)"/>
         ) : (
           notifications &&
           (notifications.length === 0 ? (

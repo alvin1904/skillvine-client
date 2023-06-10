@@ -6,27 +6,7 @@ import { useRef, useState } from "react";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import { markCertificateAPI } from "@/apis/teacher";
 import useAxiosCaller from "@/utils/useAxiosCaller";
-
-const Buttons = ({ handleSubmit, handleReject, remarkRef }) => (
-  <>
-    <div className={styles.btnHolder}>
-      <input
-        type="text"
-        placeholder="Enter remark"
-        className={styles.remark}
-        ref={remarkRef}
-      />
-    </div>
-    <div className={styles.btnHolder}>
-      <button className={styles.btn2} onClick={handleReject}>
-        Reject Certificate
-      </button>
-      <button className={styles.btn2} onClick={handleSubmit}>
-        Accept Certificate
-      </button>
-    </div>
-  </>
-);
+import Loadings from "@/components/Loading/Loadings";
 
 export default function CertificateMarkForm({ data, certId }) {
   const {
@@ -42,6 +22,8 @@ export default function CertificateMarkForm({ data, certId }) {
   const { throwError } = useCustomError();
   const { fetchData } = useAxiosCaller();
   const [load, setLoad] = useState(false);
+  const [loadingA, setLoadingA] = useState(false);
+  const [loadingR, setLoadingR] = useState(false);
   const inputRef = useRef(null);
   const handleUpdate = () => {
     if (!data || !data.category) return throwError(400);
@@ -67,8 +49,11 @@ export default function CertificateMarkForm({ data, certId }) {
   const remarkRef = useRef(null);
 
   const handleSubmit = async () => {
-    if (!inputRef.current.value)
+    setLoadingA(true);
+    if (!inputRef.current.value) {
+      setLoadingA(false);
       return throwError("Please click on UPDATE button!", status.WARNING);
+    }
     const temp = getDataForSubmission(
       parseInt(inputRef.current.value),
       remarkRef.current.value || "",
@@ -78,15 +63,24 @@ export default function CertificateMarkForm({ data, certId }) {
       data.isLeadership,
       data.year
     );
-    if (Object.values(temp).includes(undefined))
+    if (Object.values(temp).includes(undefined)) {
+      setLoadingA(false);
       return throwError("Invalid data!");
+    }
     const response = await fetchData(markCertificateAPI, temp, certId);
     console.log(response);
     if (response.status === 200)
       throwError("Certificate marked!", status.SUCCESS);
     else throwError("Error while marking certificate!");
+    setLoadingA(false);
   };
-  const handleReject = () => {};
+  const handleReject = () => {
+    setLoadingR(true);
+    setTimeout(() => {
+      throwError("feature not ready");
+      setLoadingR(false);
+    }, 200);
+  };
   return (
     <div className={`${styles.markInfo} ${styles.white}`}>
       <h1>Category details</h1>
@@ -108,11 +102,34 @@ export default function CertificateMarkForm({ data, certId }) {
       <h1>Certificate Marking</h1>
       <p>The points based on the categories are:</p>
       <input className={styles.inputBox} type="text" ref={inputRef} />
-      <Buttons
-        handleSubmit={handleSubmit}
-        handleReject={handleReject}
-        remarkRef={remarkRef}
-      />
+      <div className={styles.btnHolder}>
+        <input
+          type="text"
+          placeholder="Enter remark"
+          className={styles.remark}
+          ref={remarkRef}
+        />
+      </div>
+      <div className={styles.btnHolder}>
+        <button className={styles.btn2} onClick={handleReject}>
+          {loadingR ? (
+            <span>
+              <Loadings color="var(--clr-primary-200)" />
+            </span>
+          ) : (
+            "Reject Certificate"
+          )}
+        </button>
+        <button className={styles.btn2} onClick={handleSubmit}>
+          {loadingA ? (
+            <span>
+              <Loadings color="var(--clr-primary-200)" />
+            </span>
+          ) : (
+            "Accept Certificate"
+          )}
+        </button>
+      </div>
     </div>
   );
 }

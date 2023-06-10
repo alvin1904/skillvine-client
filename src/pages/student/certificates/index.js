@@ -47,8 +47,7 @@ export default function certificateData() {
       );
       // THE SEARCH MODULE
       setCertificates(filteredCertificates);
-    }
-    else setCertificates(certificateBackup)
+    } else setCertificates(certificateBackup);
   };
   return (
     <StudentLayout>
@@ -65,7 +64,11 @@ export default function certificateData() {
         </Indicators>
         <Certificates use={certCompStatus.VIEW}>
           {loading ? (
-            <Loadings />
+            <>
+              <br />
+              <br />
+              <Loadings color="var(--clr-primary-300)" />
+            </>
           ) : (
             certificates &&
             (certificates.length === 0 ? (

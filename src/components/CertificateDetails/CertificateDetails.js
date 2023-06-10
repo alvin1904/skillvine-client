@@ -32,7 +32,7 @@ export default function CertificateDetails({ use, slug }) {
           {certificate.certificateName || (
             <div className={styles.loader}>
               <span>Certificate</span>
-              <Loadings />
+              <Loadings color="var(--clr-primary-300)" />
             </div>
           )}
         </h1>
@@ -62,7 +62,10 @@ export default function CertificateDetails({ use, slug }) {
             <h1>Certificate Evaluation Status</h1>
             <p>Status: {certificate?.status?.toUpperCase()}</p>
             <p>Points(if marked): {certificate?.points}</p>
-            <p>Last verified by(if marked): {certificate?.lastVerifiedBy?.name}</p>
+            <p>
+              Last verified by(if marked): {certificate?.lastVerifiedBy?.name}
+            </p>
+            <p>Remarks by teacher(if marked): {certificate?.remarks}</p>
           </>
         </div>
         {use === users.STUDENT ? (

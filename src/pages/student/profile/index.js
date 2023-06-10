@@ -26,7 +26,7 @@ export default function profile() {
     return (
       <StudentLayout>
         <div className="dashboard">
-          <Loadings />
+          <Loadings color="var(--clr-primary-300)"/>
         </div>
       </StudentLayout>
     );

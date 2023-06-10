@@ -43,7 +43,7 @@ export default function RightEdit({
     const temp2 = temp[0]?.isLeadership;
     !temp2 ? setLevels(levels2) : setLevels(levels3);
   }, [activitySelected]);
-  
+
   return (
     <div className={styles.RightAdd}>
       <DropDown2
@@ -87,7 +87,11 @@ export default function RightEdit({
         />
       </div>
       <button type="submit" className={styles.submitBtn}>
-        {loading ? <Loadings /> : `Update certificate details`}
+        {loading ? (
+          <Loadings color="var(--clr-primary-300)" />
+        ) : (
+          `Update certificate details`
+        )}
       </button>
     </div>
   );

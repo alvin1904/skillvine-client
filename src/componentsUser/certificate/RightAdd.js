@@ -88,7 +88,11 @@ export default function RightAdd({
         />
       </div>
       <button type="submit" className={styles.submitBtn}>
-        {loading ? <Loadings /> : `Upload the certificate`}
+        {loading ? (
+          <Loadings color="var(--clr-primary-300)" />
+        ) : (
+          `Upload the certificate`
+        )}
       </button>
     </div>
   );

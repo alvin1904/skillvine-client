@@ -55,7 +55,7 @@ export default function Sidebar() {
     return (
       <aside className={styles.sidebar}>
         <br></br>
-        <Loadings />
+        <Loadings color="var(--clr-primary-300)"/>
       </aside>
     );
   return (

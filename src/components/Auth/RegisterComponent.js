@@ -69,7 +69,7 @@ export default function RegisterComponent() {
       />
       <div className={styles.login_detail_collect}>
         <button type="submit" className={styles.login_btn}>
-          {loading ? <Loadings /> : " Submit Details"}
+          {loading ? <Loadings color="var(--clr-primary-300)"/> : " Submit Details"}
         </button>
       </div>
     </form>

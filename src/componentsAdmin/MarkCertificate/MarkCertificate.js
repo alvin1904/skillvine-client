@@ -27,7 +27,7 @@ export default function MarkCertificate({ slug }) {
   if (loading)
     return (
       <div className="add_certificate h-100">
-        <Loadings />
+        <Loadings color="var(--clr-primary-200)"/>
       </div>
     );
   else if (details._id) {

@@ -109,6 +109,10 @@
   transition: 0.1s all ease-in-out;
   text-transform: uppercase;
 }
+.btn2 {
+  width: 230px;
+  height: 60px;
+}
 .btn2:hover,
 .btn3:hover {
   background-color: var(--clr-primary-250);

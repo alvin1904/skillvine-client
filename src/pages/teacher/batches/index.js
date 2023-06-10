@@ -72,11 +72,11 @@ export default function batchesPage() {
           </div>
           Select a {selectMode}:
           <div className={styles.btn} onClick={signOut}>
-            <IoIosExit size={30} /> <span>SIGN{" "}OUT</span>
+            <IoIosExit size={30} /> <span>SIGN OUT</span>
           </div>
         </div>
         {loading ? (
-          <Loadings />
+          <Loadings color="var(--clr-primary-200)" />
         ) : array ? (
           array.length === 0 ? (
             <NothingFound />
@@ -84,7 +84,7 @@ export default function batchesPage() {
             <Folders array={array} changePage={changePage} />
           )
         ) : (
-          <Loadings />
+          <Loadings color="var(--clr-primary-200)" />
         )}
       </div>
     </div>

@@ -83,7 +83,7 @@ export default function index() {
             {loading ? (
               <>
                 <br></br>
-                <Loadings />
+                <Loadings color="var(--clr-primary-300)"/>
               </>
             ) : (
               certificates &&
