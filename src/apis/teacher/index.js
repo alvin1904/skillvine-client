@@ -35,6 +35,8 @@ export const getCertificateAPI2 = (id) =>
 //MARK CErTIFICATE
 export const markCertificateAPI = (data, id) =>
   api.patch(`/teachers/certificates/${id}`, data, { withCredentials: true });
+export const rejectCertificateAPI = (data, id) =>
+  api.patch(`/teachers/certificates/reject/${id}`, data, { withCredentials: true });
 
 // INTERCEPTOR
 let refresh = false;

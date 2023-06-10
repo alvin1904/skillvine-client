@@ -4,7 +4,7 @@ import Loadings from "@/components/Loading/Loadings";
 import EachNotification from "./EachNotification";
 import NoNotifications from "./NoNotifications";
 import useAxiosCaller from "@/utils/useAxiosCaller";
-import { getNotificationsAPI } from "@/apis";
+import { deleteNotificationsAPI, getNotificationsAPI } from "@/apis";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 
 export default function NotificationCentre() {
@@ -27,17 +27,21 @@ export default function NotificationCentre() {
   const clearNotifications = async () => {
     if (notifications.length === 0)
       return throwError("No notifications to clear!", status.INFO);
-    const response = await fetchData(getNotificationsAPI);
-    if ([200, 304].includes(response.status) && response.data)
+    const response = await fetchData(deleteNotificationsAPI);
+    if ([200, 304].includes(response.status) && response.data) {
       setNotifications([]);
-    else if (response.status === 401) console.log("Token not present");
+      throwError(
+        `${response.data?.notification?.deletedCount} Notification(s) deleted`,
+        status.INFO
+      );
+    } else if (response.status === 401) console.log("Token not present");
     else throwError(response.status);
   };
   return (
     <>
       <div className={styles.notification__content}>
         {loading ? (
-          <Loadings color="var(--clr-primary-200)"/>
+          <Loadings color="var(--clr-primary-200)" />
         ) : (
           notifications &&
           (notifications.length === 0 ? (

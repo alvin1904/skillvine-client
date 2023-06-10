@@ -4,7 +4,7 @@ import useCertificateDealer from "./EditCertificateLogic";
 import { GrUpdate } from "react-icons/gr";
 import { useRef, useState } from "react";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
-import { markCertificateAPI } from "@/apis/teacher";
+import { markCertificateAPI, rejectCertificateAPI } from "@/apis/teacher";
 import useAxiosCaller from "@/utils/useAxiosCaller";
 import Loadings from "@/components/Loading/Loadings";
 
@@ -74,12 +74,17 @@ export default function CertificateMarkForm({ data, certId }) {
     else throwError("Error while marking certificate!");
     setLoadingA(false);
   };
-  const handleReject = () => {
+  const handleReject = async () => {
     setLoadingR(true);
-    setTimeout(() => {
-      throwError("feature not ready");
-      setLoadingR(false);
-    }, 200);
+    const temp = {
+      remarks: remarkRef.current.value || "",
+    };
+    const response = await fetchData(rejectCertificateAPI, temp, certId);
+    console.log(response);
+    if (response.status === 200)
+      throwError("Certificate rejected successfully!", status.SUCCESS);
+    else throwError("Error while rejecting certificate!");
+    setLoadingR(false);
   };
   return (
     <div className={`${styles.markInfo} ${styles.white}`}>
