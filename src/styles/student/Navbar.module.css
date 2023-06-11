@@ -10,11 +10,46 @@
   align-content: center;
   justify-content: space-around;
 }
+.nav .nav_logo span {
+  display: none;
+}
+@media screen and (min-width: 767px) {
+  .nav {
+    position: absolute;
+    transition: 150ms all ease;
+    overflow: hidden;
+    height: 95%;
+    z-index: 100;
+  }
+  .nav .nav_logo {
+    transform: translateX(4.75rem);
+  }
+  .nav .nav_logo span {
+    display: inline;
+    transition: 150ms all ease;
+    opacity: 0;
+  }
+  .nav:hover {
+    width: 200px;
+  }
+  .nav:hover .nav_logo {
+    transform: translateX(0rem);
+  }
+  .nav:hover .nav_logo span {
+    opacity: 1;
+  }
+  .nav_logo {
+    width: 12rem;
+    grid-auto-flow: column;
+    gap: 0.25rem;
+    align-items: center;
+    text-align: left;
+    justify-content: left;
+  }
+}
 .nav_logo {
   height: fit-content;
-  width: fit-content;
   display: grid;
-  justify-content: center;
   color: var(--clr-light);
   margin: 15px 0px;
   padding: 5px;

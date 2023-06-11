@@ -9,11 +9,11 @@ import { GoSignOut } from "react-icons/go";
 export const users = { STUDENT: "student", TEACHER: "teacher" };
 
 export const studentNavbar = [
-  { icon: MdHome, page: "/student/dashboard" },
-  { icon: MdLibraryBooks, page: "/student/certificates" },
-  { icon: MdLibraryAdd, page: "/student/certificates/add" },
-  { icon: MdContacts, page: "/student/profile" },
-  { icon: GoSignOut, page: "/login" },
+  { icon: MdHome, page: "/student/dashboard" ,name:"Home"},
+  { icon: MdLibraryBooks, page: "/student/certificates" ,name:"View Certificates"},
+  { icon: MdLibraryAdd, page: "/student/certificates/add" ,name:"Add Certificate"},
+  { icon: MdContacts, page: "/student/profile" ,name:"Profile"},
+  { icon: GoSignOut, page: "/login" ,name:"Sign Out"},
 ];
 
 export const SelectMode = {

@@ -27,6 +27,7 @@ export default function Navbar() {
           }}
         >
           <item.icon size={size} />
+          <span>{item.name}</span>
         </div>
       ))}
     </nav>

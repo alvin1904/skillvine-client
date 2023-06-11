@@ -144,6 +144,11 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--clr-primary-300) #eee;
 }
+@media screen and (min-width: 767px) {
+  .student_main {
+    margin-left: 70px;
+  }
+}
 ::-webkit-scrollbar {
   width: 5px;
 }
