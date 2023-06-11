@@ -1,0 +1,31 @@
+.bg {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.container {
+  height: 50%;
+  width: 50%;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: white;
+  margin-bottom: 5rem;
+}
+.container p span {
+  font-weight: 600;
+}
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 90%;
+    font-size: 1.01rem;
+  }
+}
