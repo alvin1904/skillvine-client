@@ -25,7 +25,7 @@ const defaults = {
   show: false,
   status: status.ERROR,
   themes: themes.DARK,
-  message: "We ran into some problem. Sorry for the inconvinience",
+  message: "We ran into some problem. Sorry for the inconvenience",
   timeout: 3000,
 };
 

@@ -27,7 +27,7 @@ export default function Categories({
     data === undefined || !data
       ? "Select Level"
       : data?.isLeadership
-      ? levels3[data?.leadershipLevel]
+      ? levels3[data?.leadershipLevel-1]
       : "Level " + data?.level
   );
 

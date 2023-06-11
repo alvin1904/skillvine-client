@@ -44,11 +44,15 @@ const useCertificateDealer = () => {
 
   const camelCaseConvert = (title) => {
     const values = {
-      volunteer: "volunteer",
       "core-coordinator": "coreCoordinator",
       "sub-coordinator": "subCoordinator",
+      volunteer: "volunteer",
+      1: "coreCoordinator",
+      2: "subCoordinator",
+      3: "volunteer",
     };
-    return values[title.toLowerCase()];
+    if (typeof title === "string") return values[title.toLowerCase()];
+    else if (typeof title === "number") return values[title];
   };
 
   // RETURNING POINTS
@@ -57,8 +61,6 @@ const useCertificateDealer = () => {
       const category = categoryData.find(
         (category) => category.activity === ref3?.current?.innerText
       );
-      console.log(category);
-      console.log(ref3?.current?.innerText);
       if (category) {
         const levelIndex = levels2.indexOf(ref4.current?.innerText) + 1 || 0;
         const leadershipValue = ref4.current?.innerText;
