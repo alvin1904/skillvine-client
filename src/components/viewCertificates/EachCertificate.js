@@ -36,13 +36,13 @@ export default function EachCertificate({
   if (statusOfCertificate && statusOfCertificate === "pending") show = true;
 
   const goToDetails = () => router.push(baseLink2 + id);
-  const handleEdit = () =>
-    show || use === certCompStatus.MARK
-      ? router.push(baseLink + id)
-      : console.log("Err");
+  const handleEdit = () => {
+    if (show || use === certCompStatus.MARK) router.push(baseLink + id);
+    else console.log("Err");
+  };
 
   const handleDelete = async () => {
-    show ?? (await handleDeleteCertificate(id));
+    if (show) await handleDeleteCertificate(id);
   };
   return (
     <div

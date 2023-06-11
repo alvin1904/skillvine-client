@@ -456,7 +456,7 @@ body {
   font-weight: 500;
   padding: 20px;
 }
-.homepage__header{
+.homepage__header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -465,17 +465,25 @@ body {
   width: 100%;
   text-align: center;
 }
-.homepage__header h1{
+.homepage__header h1 {
   font-size: 3rem;
   font-weight: 300;
   margin-top: 1rem;
 }
-.homepage__header p{
+.homepage__header p {
   max-width: 600px;
 }
-.homepage__header button{
+.homepage__header button {
   outline: none;
   border: 1px dashed white;
   padding: 10px 35px;
   margin-top: 1rem;
+  transition: all 100ms ease-in-out;
+  border-radius: 2px;
+}
+.homepage__header button:hover {
+  outline: none;
+  border: 1px dashed white;
+  background-color: white;
+  color: var(--clr-dark);
 }

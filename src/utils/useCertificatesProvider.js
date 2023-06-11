@@ -80,7 +80,7 @@ const useCertificateFilter = () => {
     const response = await fetchData(deleteCertificatesAPI, id);
     if (response && response.status === 200) {
       throwError(
-        "Certificate deleted successfully! Changes will be updated shortly.",
+        "Certificate deleted successfully. Refresh to view updated list!",
         status.SUCCESS
       );
     } else throwError(response?.response?.status);
