@@ -49,11 +49,13 @@ export default function CertificateMarkForm({ data, certId }) {
   const remarkRef = useRef(null);
 
   const handleSubmit = async () => {
-    setLoadingA(true);
+    if (!remarkRef.current.value || remarkRef.current.value === "")
+      return throwError("Enter a remark while accepting the certificate.");
     if (!inputRef.current.value) {
       setLoadingA(false);
       return throwError("Please click on UPDATE button!", status.WARNING);
     }
+    setLoadingA(true);
     const temp = getDataForSubmission(
       parseInt(inputRef.current.value),
       remarkRef.current.value || "",
@@ -68,13 +70,17 @@ export default function CertificateMarkForm({ data, certId }) {
       return throwError("Invalid data!");
     }
     const response = await fetchData(markCertificateAPI, temp, certId);
-    console.log(response);
     if (response.status === 200)
       throwError("Certificate marked!", status.SUCCESS);
-    else throwError("Error while marking certificate!");
+    else
+      throwError(
+        response?.response?.data?.error || "Error while marking certificate!"
+      );
     setLoadingA(false);
   };
   const handleReject = async () => {
+    if (!remarkRef.current.value || remarkRef.current.value === "")
+      return throwError("Enter a remark while rejecting the certificate.");
     setLoadingR(true);
     const temp = {
       remarks: remarkRef.current.value || "",
@@ -83,7 +89,10 @@ export default function CertificateMarkForm({ data, certId }) {
     console.log(response);
     if (response.status === 200)
       throwError("Certificate rejected successfully!", status.SUCCESS);
-    else throwError("Error while rejecting certificate!");
+    else
+      throwError(
+        response?.response?.data?.error || "Error while rejecting certificate!"
+      );
     setLoadingR(false);
   };
   return (

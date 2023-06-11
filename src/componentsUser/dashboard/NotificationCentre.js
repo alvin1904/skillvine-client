@@ -31,7 +31,7 @@ export default function NotificationCentre() {
     if ([200, 304].includes(response.status) && response.data) {
       setNotifications([]);
       throwError(
-        `${response.data?.notification?.deletedCount} Notification(s) deleted`,
+        `${response.data?.notification?.deletedCount} Notification(s) cleared!`,
         status.INFO
       );
     } else if (response.status === 401) console.log("Token not present");
