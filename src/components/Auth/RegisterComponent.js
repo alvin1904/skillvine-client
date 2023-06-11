@@ -48,12 +48,14 @@ export default function RegisterComponent() {
     e.preventDefault();
     if (!validateData()) return;
     let temp = finalizeData();
-    const data = await fetchData(updateUserAPI, temp);
-    console.log(data);
-    if (data && data.status === 200) {
+    const res = await fetchData(updateUserAPI, temp);
+    console.log(res);
+    if (res && res.status === 200) {
       throwError("Details Updated Successfully", status.SUCCESS);
       router.push("/student/dashboard");
-    } else throwError();
+    } else if (res.response?.status === 409)
+      throwError(res.response?.data?.error, status.WARNING);
+    else throwError();
   };
   return (
     <form
@@ -69,7 +71,11 @@ export default function RegisterComponent() {
       />
       <div className={styles.login_detail_collect}>
         <button type="submit" className={styles.login_btn}>
-          {loading ? <Loadings color="var(--clr-primary-300)"/> : " Submit Details"}
+          {loading ? (
+            <Loadings color="var(--clr-primary-300)" />
+          ) : (
+            " Submit Details"
+          )}
         </button>
       </div>
     </form>

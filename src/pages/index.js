@@ -27,6 +27,7 @@ export default function Home() {
               src={"/assets/skillvine-logo-white.png"}
               height={150}
               width={150}
+              alt="Logo"
             />
             <h1>SkillVine</h1>
             <p>

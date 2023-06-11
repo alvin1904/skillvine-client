@@ -11,6 +11,7 @@ export default function Navbar() {
 
   const signOut = async () => {
     localStorage.clear();
+    localStorage.clear();
     const response = await logoutAPI();
     router.push("/login");
   };

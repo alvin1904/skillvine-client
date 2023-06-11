@@ -3,6 +3,10 @@ import Image from "next/image";
 import styles from "@/styles/student/Profile.module.css";
 import defaultPic from "/public/assets/defaultPic.png";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
+import Loadings from "@/components/Loading/Loadings";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { deleteUserAPI } from "@/apis";
+import { useRouter } from "next/router";
 
 export default function ProfileComponent({
   profilePic,
@@ -15,17 +19,28 @@ export default function ProfileComponent({
   id,
 }) {
   const { throwError } = useCustomError();
-  const handleDelete = () => {
+  const { loading, fetchData } = useAxiosCaller();
+  const router = useRouter();
+  const handleDelete = async () => {
     if (!id) return throwError("Please try again later!", status.INFO);
-    throwError(
-      `This feature is not available yet for the id: ${id}`,
-      status.INFO
-    );
+    const res = await fetchData(deleteUserAPI);
+    if (res.status == 200) {
+      throwError("Account deleted successfully!", status.SUCCESS);
+      localStorage.clear();
+      router.push("/");
+    } else throwError();
   };
   return (
     <div className={styles.profile}>
       <div className={styles.profile_dp}>
-        {<Image src={profilePic || defaultPic} height={250} width={250} alt="Profile Image"/>}
+        {
+          <Image
+            src={profilePic || defaultPic}
+            height={250}
+            width={250}
+            alt="Profile Image"
+          />
+        }
       </div>
       <div className={styles.profile_name}>
         <h5>{name && "Welcome,"}</h5>
@@ -50,7 +65,12 @@ export default function ProfileComponent({
           deleted along with it, and there is no way to retrieve it.
         </h6>
         <button className={styles.delete} onClick={handleDelete}>
-          DELETE ACCOUNT
+          {loading ? (
+            <Loadings color="var(--clr-primary-300)" />
+          ) : (
+            `DELETE ACCOUNT
+`
+          )}{" "}
         </button>
       </div>
     </div>
