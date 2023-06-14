@@ -487,3 +487,30 @@ body {
   background-color: white;
   color: var(--clr-dark);
 }
+.hp_content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 3rem;
+}
+.hp_image{
+  height: 300px;
+  width: 1440px;
+  display: grid;
+  align-items: center;
+}
+.hp_image img{
+  height: auto;
+  border-radius: 5px;
+}
+.hp_content:nth-of-type(2n){
+  flex-direction: row-reverse;
+}
+.hp_para{
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 30px;
+}

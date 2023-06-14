@@ -1,5 +1,7 @@
 "use client";
 
+import ContentImage from "@/components/LandingPage/ContentImage";
+import ContentText from "@/components/LandingPage/ContentText";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -44,7 +46,54 @@ export default function Home() {
             </button>
           </div>
           <div className="homepage__content">
-            
+            <div className="hp_content">
+              <ContentImage href="/assets/sample_image.jpg" />
+              <ContentText>
+                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
+                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
+                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
+                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
+                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
+                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
+                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
+              </ContentText>
+            </div>
+            <div className="hp_content">
+              <ContentImage href="/assets/sample_image.jpg" />
+              <ContentText>
+                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
+                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
+                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
+                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
+                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
+                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
+                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
+              </ContentText>
+            </div>
+            <div className="hp_content">
+              <ContentImage href="/assets/sample_image.jpg" />
+              <ContentText>
+                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
+                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
+                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
+                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
+                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
+                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
+                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
+              </ContentText>
+            </div>
+            <div className="hp_content">
+              <ContentImage href="/assets/sample_image.jpg" />
+              <ContentText>
+                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
+                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
+                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
+                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
+                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
+                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
+                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
+              </ContentText>
+            </div>
           </div>
         </div>
       </main>

@@ -29,3 +29,19 @@
     font-size: 1.01rem;
   }
 }
+.button {
+  background-color: transparent;
+  color: white;
+  border: 1px dashed white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  max-width: 300px;
+  transition: all 0.3s ease-in-out;
+}
+.button:hover {
+  background-color: white;
+  color: var(--clr-dark);
+}

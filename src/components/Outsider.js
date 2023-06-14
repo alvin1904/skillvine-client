@@ -1,6 +1,8 @@
 import styles from "@/styles/outsiders.module.css";
+import { useRouter } from "next/router";
 
 export default function Outsider() {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <p>
@@ -18,6 +20,9 @@ export default function Outsider() {
         contact our support team at <span>skillvinerit@gmail.com</span>. Our
         team will be happy to assist you and provide any necessary information.
       </p>
+      <button className={styles.button} onClick={() => router.push("/")}>
+        GO TO HOME
+      </button>
     </div>
   );
 }
