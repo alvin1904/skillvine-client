@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import {
   editCertificateAPI,
-  getCategoryAPI,
   uploadCertificateAPI,
 } from "@/apis";
 import useAxiosCaller from "@/utils/useAxiosCaller";
@@ -13,6 +12,7 @@ import {
   yearOfStudy,
 } from "@/constants/data";
 import { formatArrayToString } from "@/utils/arrayToString";
+import { getCategoryAPI } from "@/apis/common";
 
 const useCertificateDealer = () => {
   const { loading, fetchData } = useAxiosCaller();

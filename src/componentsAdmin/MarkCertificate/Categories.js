@@ -1,84 +1,89 @@
-import DropDown2 from "@/components/DropDown2";
+import {
+  getActivityAPI,
+  getActivityHeadAPI,
+  getIsLeadershipAPI,
+} from "@/apis/common";
+import CustomDropDown from "@/components/CategoryDropDowns/CustomDropDown";
+import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import { levels2, levels3, yearOfStudy } from "@/constants/data";
-import { removeArrayDuplicates } from "@/utils/removeArrayDuplicates";
-import React, { useEffect, useState } from "react";
+import useAxiosCaller from "@/utils/useAxiosCaller";
+import { useEffect, useState } from "react";
 
-export default function Categories({
-  categoryData,
-  ref1,
-  ref2,
-  ref3,
-  ref4,
-  data,
-}) {
-  const [YOS, setYOS] = useState(
-    yearOfStudy[data?.year - 1] || "Select year of study"
-  );
-  const [activityHead, setActivityHead] = useState([]);
-  const [activityHSelected, setActivityHSelected] = useState(
-    data?.category.activityHead || "Select category"
-  );
-  const [activity, setActivity] = useState([]);
-  const [activitySelected, setActivitySelected] = useState(
-    data?.category.activity || "Select event"
-  );
-  const [levels, setLevels] = useState([]);
-  const [levelsSelected, setLevelsSelected] = useState(
-    data === undefined || !data
-      ? "Select Level"
-      : data?.isLeadership
-      ? levels3[data?.leadershipLevel-1]
-      : "Level " + data?.level
-  );
+export default function Categories() {
+  const { fetchData } = useAxiosCaller();
+  const { throwError } = useCustomError();
+  const [year, setYear] = useState(yearOfStudy);
+  const [activityHead, setActivityHead] = useState(null);
+  const [activity, setActivity] = useState(null);
+  const [level, setLevel] = useState(null);
+  const [finalData, setFinalData] = useState({});
 
+  const verifyString = (str) => {
+    str.replace("&", "%26");
+    return str;
+  };
   useEffect(() => {
-    const temp = categoryData.map((item) => item.activityHead);
-    const temp2 = removeArrayDuplicates(temp);
-    setActivityHead(temp2);
-  }, [categoryData]);
+    const getActivityHeads = async () => {
+      const res = await fetchData(getActivityHeadAPI);
+      if (res.status === 200) setActivityHead(res.data);
+      else throwError();
+    };
 
-  useEffect(() => {
-    const temp = categoryData.filter(
-      (category) => category.activityHead === activityHSelected
-    );
-    const temp2 = temp.map((item) => item.activity);
-    setActivity(temp2);
-  }, [activityHSelected]);
+    if (!activityHead) getActivityHeads();
+  }, [activityHead]);
 
-  useEffect(() => {
-    const temp = categoryData.filter(
-      (category) => category.activity === activitySelected
-    );
-    const temp2 = temp[0]?.isLeadership;
-    !temp2 ? setLevels(levels2) : setLevels(levels3);
-  }, [activitySelected]);
-
+  const onActivityHeadChange = async (changedData) => {
+    setLevel(null);
+    setActivity(null);
+    const res = await fetchData(getActivityAPI, verifyString(changedData));
+    if (res.status === 200) setActivity(res.data);
+    else throwError();
+  };
+  const onActivityChange = async (changedData) => {
+    setLevel(null);
+    const res = await fetchData(getIsLeadershipAPI, verifyString(changedData));
+    if (res.status === 200)
+      setLevel(res.data?.isLeadership ? levels3 : levels2);
+    else throwError();
+  };
+  const onLevelChange = async (changedData) => {
+    console.log(changedData);
+  };
+  const onYearChange = async (changedData) => {
+    console.log(changedData);
+  };
   return (
     <>
-      <DropDown2
-        array={yearOfStudy}
-        ulRef={ref1}
-        optionSelected={YOS}
-        setOptionSelected={setYOS}
-      />
-      <DropDown2
-        array={activityHead}
-        ulRef={ref2}
-        optionSelected={activityHSelected}
-        setOptionSelected={setActivityHSelected}
-      />
-      <DropDown2
-        array={activity}
-        ulRef={ref3}
-        optionSelected={activitySelected}
-        setOptionSelected={setActivitySelected}
-      />
-      <DropDown2
-        array={levels}
-        ulRef={ref4}
-        optionSelected={levelsSelected}
-        setOptionSelected={setLevelsSelected}
-      />
+      <span className="category_dropdowns">
+        <CustomDropDown
+          onChange={onYearChange}
+          array={yearOfStudy}
+          defaultText={"Change year"}
+        />
+        {activityHead && activityHead.length > 0 && (
+          <CustomDropDown
+            onChange={onActivityHeadChange}
+            array={activityHead}
+            defaultText={"Change category"}
+          />
+        )}
+      </span>
+      <span className="category_dropdowns">
+        {activity && activity.length > 0 && (
+          <CustomDropDown
+            onChange={onActivityChange}
+            array={activity}
+            defaultText={"Change activity"}
+          />
+        )}
+        {level && level.length > 0 && (
+          <CustomDropDown
+            onChange={onLevelChange}
+            array={level}
+            defaultText={"Change level"}
+          />
+        )}
+      </span>
     </>
   );
 }

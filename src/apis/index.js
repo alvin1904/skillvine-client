@@ -22,7 +22,6 @@ export const setHead = (token) => {
 };
 
 // INDEX
-export const apiLive = () => api.get("/");
 export const updateUserAPI = (data) =>
   api.patch("/users/students", data, { withCredentials: true });
 export const verifyToken = () =>
@@ -31,9 +30,6 @@ export const logoutAPI = () =>
   api.post("/auth/students/logout", { withCredentials: true });
 export const fetchProfileAPI = () =>
   api.get("/users/students", { withCredentials: true });
-
-// GET CATEGORIES
-export const getCategoryAPI = () => api.get("/category");
 
 // NOTIFICATIONS
 export const getNotificationsAPI = () =>

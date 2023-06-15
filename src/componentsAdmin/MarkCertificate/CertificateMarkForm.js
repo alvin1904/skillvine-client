@@ -1,42 +1,48 @@
 import styles from "@/styles/teacher/MarkCertificate.module.css";
 import Categories from "./Categories";
-import useCertificateDealer from "./EditCertificateLogic";
 import { GrUpdate } from "react-icons/gr";
 import { useRef, useState } from "react";
 import { status, useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import { markCertificateAPI, rejectCertificateAPI } from "@/apis/teacher";
 import useAxiosCaller from "@/utils/useAxiosCaller";
 import Loadings from "@/components/Loading/Loadings";
+import { levels2, levels3, yearOfStudy } from "@/constants/data";
 
 export default function CertificateMarkForm({ data, certId }) {
-  const {
-    getDataForSubmission,
-    handlePointsUpdate,
-    findPoints,
-    categoryData,
-    ref1,
-    ref2,
-    ref3,
-    ref4,
-  } = useCertificateDealer();
+  const PresentDetails = () => (
+    <>
+      <div
+        style={{
+          fontWeight: "600",
+          textDecoration: "underline",
+        }}
+      >
+        Currently Selected:{" "}
+      </div>
+      <div>YEAR: {yearOfStudy[data.year - 1]}</div>
+      <div>CATEGORY: {data.category.activityHead}</div>
+      <div>
+        ACTIVITY: {data.category.activity} @ LEVEL:{" "}
+        {data.isLeadership
+          ? levels3[data.leadershipLevel - 1]
+          : levels2[data.level - 1]}
+      </div>
+    </>
+  );
+  // IMPORTS
   const { throwError } = useCustomError();
   const { fetchData } = useAxiosCaller();
+  // LOADING STATES
   const [load, setLoad] = useState(false);
   const [loadingA, setLoadingA] = useState(false);
   const [loadingR, setLoadingR] = useState(false);
+  // REFS
   const inputRef = useRef(null);
+  const remarkRef = useRef(null);
+  // ON POINTS UPDATE
   const handleUpdate = () => {
-    if (!data || !data.category) return throwError(400);
     setLoad(true);
-    let temp = 0;
-    if (inputRef.current.value == "")
-      temp = findPoints(
-        data.category.activity,
-        data.leadershipLevel,
-        data.level
-      );
-    // FIRST TIME POINTS LOAD
-    else temp = handlePointsUpdate(); // EACH TIME POINTS UPDATING
+    let temp = 50;
     setTimeout(() => {
       if (typeof temp !== "undefined") {
         inputRef.current.value = temp;
@@ -45,9 +51,7 @@ export default function CertificateMarkForm({ data, certId }) {
       setLoad(false);
     }, 1340);
   };
-
-  const remarkRef = useRef(null);
-
+  // ON ACCEPT CERTIFICATE
   const handleSubmit = async () => {
     if (!remarkRef.current.value || remarkRef.current.value === "")
       return throwError("Enter a remark while accepting the certificate.");
@@ -56,36 +60,27 @@ export default function CertificateMarkForm({ data, certId }) {
       return throwError("Please click on UPDATE button!", status.WARNING);
     }
     setLoadingA(true);
-    const temp = getDataForSubmission(
-      parseInt(inputRef.current.value),
-      remarkRef.current.value || "",
-      data.category._id,
-      data.leadershipLevel,
-      data.level,
-      data.isLeadership,
-      data.year
-    );
-    if (Object.values(temp).includes(undefined)) {
-      setLoadingA(false);
-      return throwError("Invalid data!");
-    }
-    const response = await fetchData(markCertificateAPI, temp, certId);
-    if (response.status === 200)
-      throwError("Certificate marked!", status.SUCCESS);
-    else
-      throwError(
-        response?.response?.data?.error || "Error while marking certificate!"
-      );
-    setLoadingA(false);
+
+    // FIND DATA
+    // const response = await fetchData(markCertificateAPI, temp, certId);
+    // if (response.status === 200)
+    //   throwError("Certificate marked!", status.SUCCESS);
+    // else
+    //   throwError(
+    //     response?.response?.data?.error || "Error while marking certificate!"
+    //   );
+    // setLoadingA(false);
   };
+  // ON REJECT CERTIFICATE
   const handleReject = async () => {
     if (!remarkRef.current.value || remarkRef.current.value === "")
       return throwError("Enter a remark while rejecting the certificate.");
     setLoadingR(true);
-    const temp = {
-      remarks: remarkRef.current.value || "",
-    };
-    const response = await fetchData(rejectCertificateAPI, temp, certId);
+    const response = await fetchData(
+      rejectCertificateAPI,
+      { remarks: remarkRef.current.value || "" },
+      certId
+    );
     console.log(response);
     if (response.status === 200)
       throwError("Certificate rejected successfully!", status.SUCCESS);
@@ -98,14 +93,8 @@ export default function CertificateMarkForm({ data, certId }) {
   return (
     <div className={`${styles.markInfo} ${styles.white}`}>
       <h1>Category details</h1>
-      <Categories
-        categoryData={categoryData}
-        ref1={ref1}
-        ref2={ref2}
-        ref3={ref3}
-        ref4={ref4}
-        data={data}
-      />
+      <PresentDetails />
+      <Categories />
       <button className={styles.btn} onClick={handleUpdate}>
         <span className={load ? styles.loading : ""}>
           <GrUpdate fill="red" size={18} />

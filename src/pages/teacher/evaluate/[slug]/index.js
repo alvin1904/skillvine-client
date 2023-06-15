@@ -73,7 +73,7 @@ export default function index() {
         </Head>
         <div className="add_certificate">
           <SearchBar onSearch={onSearch} />
-          <Filters />
+          {/* <Filters /> */}
           <Indicators>
             <button className="refreshBtn" onClick={getBatches}>
               REFRESH
