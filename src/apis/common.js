@@ -14,6 +14,16 @@ export const apiLive = () => api.get("/");
 export const getCategoryAPI = () => api.get("/category");
 export const getActivityHeadAPI = () => api.get("/category/activity-heads");
 export const getActivityAPI = (head) =>
-  api.get(`/category/activity-heads/activity?name=${head}`);
+  api.get(`/category/activity-heads/activity?name=${encodeURIComponent(head)}`);
 export const getIsLeadershipAPI = (activity) =>
-  api.get(`/category/levels?activity=${activity}`);
+  api.get(`/category/levels?activity=${encodeURIComponent(activity)}`);
+export const getPointsAPI = (
+  activity,
+  level,
+  leadershipLevel,
+  isLeadership,
+  year
+) =>
+  api.get(
+    `/category/points?activity=${activity}&level=${level}&leadership-level=${leadershipLevel}&is-leadership=${isLeadership}`
+  );
