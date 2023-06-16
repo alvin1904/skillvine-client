@@ -178,6 +178,7 @@ export default function CertificateMarkForm({ data, certId }) {
       points: inputRef.current.value,
       status: "approved",
       year: finalData?.year,
+      remarks: remarkRef.current.value || "",
     };
     const response = await fetchData(markCertificateAPI, temp, certId);
     if (response.status === 200)
