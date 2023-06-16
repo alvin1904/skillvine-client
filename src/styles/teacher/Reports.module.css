@@ -1,0 +1,70 @@
+.body {
+  background-color: var(--clr-light);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reportMaker {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-light);
+  border-radius: 5px;
+  border: 2px solid var(--clr-primary-250);
+  height: 400px;
+  width: 600px;
+  padding: 20px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.btn,
+.back,
+.downloadBtn {
+  all: unset;
+  background-color: var(--clr-light);
+  border: 1px dashed var(--clr-primary-250);
+  padding: 5px 30px;
+  cursor: pointer;
+  transition: 250ms all ease-in-out;
+  border-radius: 5px;
+  text-align: center;
+}
+.back:hover,
+.btn:hover,
+.downloadBtn:hover {
+  background-color: var(--clr-primary-250);
+  color: var(--clr-light);
+}
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.btn {
+  margin-bottom: 30px;
+}
+.report {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.15rem;
+}
+.downloadBtn {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .reportMaker {
+    height: 500px;
+    width: 360px;
+  }
+}

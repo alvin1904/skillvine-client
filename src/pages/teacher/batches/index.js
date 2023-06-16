@@ -21,6 +21,7 @@ export default function batchesPage() {
   const [selectMode, setSelectMode] = useState(SelectMode.BATCH);
   const [array, setArray] = useState([]);
   const [batchesBackup, setBatchesBackup] = useState([]);
+  const [batchId, setBatchId] = useState(null);
 
   useEffect(() => {
     const getBatches = async () => {
@@ -48,6 +49,7 @@ export default function batchesPage() {
     router.push("/login");
   };
   const changePage = async (id) => {
+    setBatchId(id);
     if (selectMode === SelectMode.BATCH) {
       const response = await fetchData(getStudentsAPI, id);
       if (response.status === 200 && response.data) setArray(response.data);
@@ -55,6 +57,10 @@ export default function batchesPage() {
       setSelectMode(SelectMode.STUDENT);
     } else if (selectMode === SelectMode.STUDENT)
       router.push("/teacher/evaluate/" + id);
+  };
+  const batchWiseReport = async () => {
+    if (typeof batchId === "string")
+      router.push(`/teacher/reports/b/${batchId}`);
   };
   return (
     <div className={styles.selectorPage}>
@@ -87,6 +93,11 @@ export default function batchesPage() {
           <Loadings color="var(--clr-primary-200)" />
         )}
       </div>
+      {selectMode === SelectMode.STUDENT && (
+        <div className={styles.report_btn} onClick={batchWiseReport}>
+          <span>GENERATE BATCH-WISE REPORT</span>
+        </div>
+      )}
     </div>
   );
 }

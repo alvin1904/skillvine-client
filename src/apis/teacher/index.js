@@ -36,7 +36,13 @@ export const getCertificateAPI2 = (id) =>
 export const markCertificateAPI = (data, id) =>
   api.patch(`/teachers/certificates/${id}`, data, { withCredentials: true });
 export const rejectCertificateAPI = (data, id) =>
-  api.patch(`/teachers/certificates/reject/${id}`, data, { withCredentials: true });
+  api.patch(`/teachers/certificates/reject/${id}`, data, {
+    withCredentials: true,
+  });
+
+// REPORT GENERATION
+export const reportGenBatchAPI = (batch) =>
+  api.get(`/teachers/reports/batches/${batch}`);
 
 // INTERCEPTOR
 let refresh = false;
