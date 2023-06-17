@@ -46,6 +46,10 @@ export const reportGenBatchAPI = (batch) =>
 export const reportGenStudentAPI = (student) =>
   api.get(`/teachers/reports/students/${student}`);
 
+// DELETE STUDENT
+export const deleteStudentAPI = (student) =>
+  api.delete(`/teachers/students/${student}`);
+
 // INTERCEPTOR
 let refresh = false;
 api.interceptors.response.use(
