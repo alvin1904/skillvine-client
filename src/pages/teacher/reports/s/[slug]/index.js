@@ -1,9 +1,25 @@
-"use client";
-
-import React from "react";
+import ReportComponent from "@/componentsAdmin/ReportGenerator/ReportComponent";
+import useReport from "@/utils/useReport";
+import { useRouter } from "next/router";
 
 function index() {
-  return <div>index</div>;
+  const router = useRouter();
+  const { slug } = router.query;
+  const { backLinkStudentWise, status, targets, getData, generate } =
+    useReport();
+
+  const handleBack = () => router.push(backLinkStudentWise);
+  const handlePrepare = async () => await getData(targets.STUDENT, slug);
+  const handleDownload = () => generate(targets.STUDENT);
+  return (
+    <ReportComponent
+      target={targets.STUDENT}
+      status={status}
+      handleBack={handleBack}
+      handlePrepare={handlePrepare}
+      handleDownload={handleDownload}
+    />
+  );
 }
 
 export default index;

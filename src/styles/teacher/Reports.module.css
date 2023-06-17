@@ -12,7 +12,7 @@
   flex-direction: column;
   background-color: var(--clr-light);
   border-radius: 5px;
-  border: 2px solid var(--clr-primary-250);
+  border: 2px solid var(--clr-border);
   height: 400px;
   width: 600px;
   padding: 20px;
@@ -25,7 +25,7 @@
 .downloadBtn {
   all: unset;
   background-color: var(--clr-light);
-  border: 1px dashed var(--clr-primary-250);
+  border: 1px dashed var(--clr-border);
   padding: 5px 30px;
   cursor: pointer;
   transition: 250ms all ease-in-out;
@@ -35,7 +35,7 @@
 .back:hover,
 .btn:hover,
 .downloadBtn:hover {
-  background-color: var(--clr-primary-250);
+  background-color: var(--clr-border);
   color: var(--clr-light);
 }
 .back {

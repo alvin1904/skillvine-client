@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-export const generatePDF = (data) => {
+export const generateBatchPDF = (data) => {
   const doc = new jsPDF();
   const batch = `BATCH-WISE REPORT for ${data[0].student.batch}`;
   let pageNo = 1;
