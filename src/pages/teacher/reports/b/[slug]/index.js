@@ -1,5 +1,6 @@
 import ReportComponent from "@/componentsAdmin/ReportGenerator/ReportComponent";
 import useReport from "@/utils/useReport";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 function index() {
@@ -11,13 +12,18 @@ function index() {
   const handlePrepare = async () => await getData(targets.BATCH, slug);
   const handleDownload = () => generate(targets.BATCH);
   return (
-    <ReportComponent
-      target={targets.BATCH}
-      status={status}
-      handleBack={handleBack}
-      handlePrepare={handlePrepare}
-      handleDownload={handleDownload}
-    />
+    <>
+      <Head>
+        <title>BatchWise Report Generation</title>
+      </Head>
+      <ReportComponent
+        target={targets.BATCH}
+        status={status}
+        handleBack={handleBack}
+        handlePrepare={handlePrepare}
+        handleDownload={handleDownload}
+      />
+    </>
   );
 }
 

@@ -8,7 +8,7 @@ export const generateStudentPDF = (data) => {
     unit: "mm",
     format: "a4",
   });
-  const batch = `STUDENT-WISE REPORT for ${data.student.name}`;
+  const batch = `STUDENT-WISE REPORT`;
   let pageNo = 1;
   const spaceFactor = 80;
   let x = doc.internal.pageSize.width / 2;

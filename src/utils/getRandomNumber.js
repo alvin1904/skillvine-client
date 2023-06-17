@@ -5,3 +5,7 @@ export const getRandomNumber = (min, max) => {
 export const takeFirstNCharacters = (str, n = 10) => {
   return str? str.slice(0, n): str;
 };
+
+export const shortenName = (str, n = 10) => {
+  return str? str.slice(0, n)+"...": str;
+};

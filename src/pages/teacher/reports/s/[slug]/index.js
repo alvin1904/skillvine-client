@@ -1,5 +1,6 @@
 import ReportComponent from "@/componentsAdmin/ReportGenerator/ReportComponent";
 import useReport from "@/utils/useReport";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 function index() {
@@ -12,13 +13,18 @@ function index() {
   const handlePrepare = async () => await getData(targets.STUDENT, slug);
   const handleDownload = () => generate(targets.STUDENT);
   return (
-    <ReportComponent
-      target={targets.STUDENT}
-      status={status}
-      handleBack={handleBack}
-      handlePrepare={handlePrepare}
-      handleDownload={handleDownload}
-    />
+    <>
+      <Head>
+        <title>StudentWise Report Generation</title>
+      </Head>
+      <ReportComponent
+        target={targets.STUDENT}
+        status={status}
+        handleBack={handleBack}
+        handlePrepare={handlePrepare}
+        handleDownload={handleDownload}
+      />
+    </>
   );
 }
 
