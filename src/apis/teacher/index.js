@@ -43,6 +43,8 @@ export const rejectCertificateAPI = (data, id) =>
 // REPORT GENERATION
 export const reportGenBatchAPI = (batch) =>
   api.get(`/teachers/reports/batches/${batch}`);
+export const reportGenStudentAPI = (student) =>
+  api.get(`/teachers/reports/students/${student}`);
 
 // INTERCEPTOR
 let refresh = false;

@@ -1,8 +1,9 @@
-import { reportGenBatchAPI } from "@/apis/teacher";
+import { reportGenBatchAPI, reportGenStudentAPI } from "@/apis/teacher";
 import useAxiosCaller from "./useAxiosCaller";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import { generateBatchPDF } from "@/componentsAdmin/ReportGenerator/Batchwise";
 import { useState } from "react";
+import { generateStudentPDF } from "@/componentsAdmin/ReportGenerator/Studentwise";
 
 function useReport() {
   const message = {
@@ -28,7 +29,7 @@ function useReport() {
       if (target === targets.BATCH)
         res = await fetchData(reportGenBatchAPI, slug);
       if (target === targets.STUDENT)
-        res = await fetchData(reportGenBatchAPI, slug);
+        res = await fetchData(reportGenStudentAPI, slug);
       console.log(res);
       if (res.status === 200 || res.status === 304) {
         setData(res.data);
@@ -46,6 +47,7 @@ function useReport() {
   const generate = (target) => {
     if (!data) return throwError("Incorrect Data");
     if (target === targets.BATCH) generateBatchPDF(data);
+    if (target === targets.STUDENT) generateStudentPDF(data);
   };
   return {
     backLinkBatchWise,

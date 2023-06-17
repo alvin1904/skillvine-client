@@ -8,7 +8,7 @@ function index() {
   const { backLinkStudentWise, status, targets, getData, generate } =
     useReport();
 
-  const handleBack = () => router.push(backLinkStudentWise);
+  const handleBack = () => router.push(backLinkStudentWise + slug);
   const handlePrepare = async () => await getData(targets.STUDENT, slug);
   const handleDownload = () => generate(targets.STUDENT);
   return (
