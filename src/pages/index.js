@@ -2,6 +2,7 @@
 
 import ContentImage from "@/components/LandingPage/ContentImage";
 import ContentText from "@/components/LandingPage/ContentText";
+import homepageContent from "@/constants/homepageContent";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -46,10 +47,15 @@ export default function Home() {
             </button>
           </div>
           <div className="homepage__content">
-            <div className="hp_content">
-              <ContentImage href="/assets/sample_image.jpg" />
-              <ContentText></ContentText>
-            </div>
+            {homepageContent.map((content, index) => {
+              console.log(content.imageLink)
+              return (
+                <div className="hp_content" key={index}>
+                  <ContentImage href={`${content.imageLink}`} />
+                  <ContentText>{content.content}</ContentText>
+                </div>
+              );
+            })}
           </div>
         </div>
       </main>
