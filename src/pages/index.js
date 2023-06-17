@@ -48,51 +48,7 @@ export default function Home() {
           <div className="homepage__content">
             <div className="hp_content">
               <ContentImage href="/assets/sample_image.jpg" />
-              <ContentText>
-                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
-                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
-                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
-                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
-                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
-                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
-                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
-              </ContentText>
-            </div>
-            <div className="hp_content">
-              <ContentImage href="/assets/sample_image.jpg" />
-              <ContentText>
-                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
-                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
-                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
-                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
-                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
-                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
-                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
-              </ContentText>
-            </div>
-            <div className="hp_content">
-              <ContentImage href="/assets/sample_image.jpg" />
-              <ContentText>
-                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
-                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
-                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
-                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
-                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
-                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
-                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
-              </ContentText>
-            </div>
-            <div className="hp_content">
-              <ContentImage href="/assets/sample_image.jpg" />
-              <ContentText>
-                lorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb
-                dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb
-                jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh dvfhebfhg d
-                bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf dbvvbvxcbvh
-                dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg sfbvdf
-                dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem ipsum fdg
-                sfbvdf dbvvbvxcbvh dvfhebfhg d bfv dvb jdbv dvb dvb dbvlorem
-              </ContentText>
+              <ContentText></ContentText>
             </div>
           </div>
         </div>
