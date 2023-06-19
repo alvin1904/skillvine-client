@@ -1,9 +1,10 @@
 # :star: SkillVine
-
+<div style="display: flex; flex-direction: row;">
 <img src="public/assets/Collage1.png" width="320" alt="ss" />
 <img src="public/assets/Collage2.png" width="320" alt="ss" />
 <img src="public/assets/Collage3.png" width="320" alt="ss" />
 <img src="public/assets/Collage4.png" width="320" alt="ss" />
+</div>
 
 The Activity Points Management System is a web-based platform designed to simplify the process of managing certificates and tracking activity points for B.Tech certification. This documentation provides an overview of the system's features, installation instructions, and usage guidelines.
 
@@ -12,7 +13,7 @@ The Activity Points Management System is a web-based platform designed to simpli
 - [Important Links](#important-links)
 - [Configuration for Local Deployment](#configuration-for-local-deployment)
 - [Tech Stack](#tech-stack)
-- [Usage & Features](#features)
+- [Usage and Features](#usage-and-features)
 - [Contributors](#contributors)
 
 ## Important Links
@@ -42,7 +43,7 @@ We utilized the MERN Stack as the foundation of our application, encompassing th
 - `jspdf` and `jspdf-autotable`: We utilized these libraries to generate PDF documents and tables within the application.
 - `sharp`: We incorporated sharp for image processing and manipulation within our application.
 
-## Usage & Features
+## Usage and Features
 
 Once the system is installed and running, users can follow these guidelines to utilize its features:
 
@@ -69,8 +70,7 @@ Upon logging in, you will be redirected to your personalized dashboard.
 - [Vignesh R Pillai](https://github.com/vigneshacks)
 - [Sreerag M](https://github.com/sm0483)
 <br/>
-<br/>
 S6 CSE<br/>
-Govt. Engg. College of Tech. (APJKTU)<br/>
+Govt. Engg. College of Tech. (APJAKTU)<br/>
 Kottayam, Kerala, India<br/>
 
