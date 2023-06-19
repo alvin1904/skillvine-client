@@ -48,7 +48,7 @@ export default function Home() {
           </div>
           <div className="homepage__content">
             {homepageContent.map((content, index) => {
-              console.log(content.imageLink)
+              console.log(content.imageLink);
               return (
                 <div className="hp_content" key={index}>
                   <ContentImage href={`${content.imageLink}`} />
@@ -58,6 +58,7 @@ export default function Home() {
             })}
           </div>
         </div>
+        <div className="copyright">© 2023 SkillVine</div>
       </main>
     </>
   );
