@@ -13,6 +13,7 @@ import { getBatchesAPI, getStudentsAPI, logoutAPI } from "@/apis/teacher";
 import { formatArrayToObj } from "@/utils/arrayOperations";
 import { useCustomError } from "@/components/ErrorHandler/ErrorContext";
 import Head from "next/head";
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
 
 export default function batchesPage() {
   const router = useRouter();
@@ -23,18 +24,15 @@ export default function batchesPage() {
   const [batchesBackup, setBatchesBackup] = useState([]);
   const [batchId, setBatchId] = useState(null);
 
-  useEffect(() => {
-    const getBatches = async () => {
-      const response = await fetchData(getBatchesAPI);
-      if ([200, 304].includes(response.status) && response.data) {
-        const temp = formatArrayToObj(response.data);
-        setArray(temp);
-        setBatchesBackup(temp);
-      } else if (response.status === 401) console.log("Token not present");
-      else throwError(response.status);
-    };
-    getBatches();
-  }, []);
+  const getBatches = async () => {
+    const response = await fetchData(getBatchesAPI);
+    if ([200, 304].includes(response.status) && response.data) {
+      const temp = formatArrayToObj(response.data);
+      setArray(temp);
+      setBatchesBackup(temp);
+    } else if (response.status === 401) console.log("Token not present");
+    else throwError(response.status);
+  };
 
   const goBack = () => {
     if (selectMode === SelectMode.BATCH) signOut();
@@ -71,6 +69,7 @@ export default function batchesPage() {
             : "Select a student!"}
         </title>
       </Head>
+      <TeacherTokenCheck />
       <div className={styles.selector}>
         <div className={styles.toolbar}>
           <div className={styles.btn} onClick={goBack}>
@@ -85,7 +84,12 @@ export default function batchesPage() {
           <Loadings color="var(--clr-primary-200)" />
         ) : array ? (
           array.length === 0 ? (
-            <NothingFound />
+            <>
+              <NothingFound />
+              <button className={styles.load_again_btn} onClick={getBatches}>
+                Load all batches!
+              </button>
+            </>
           ) : (
             <Folders array={array} changePage={changePage} />
           )

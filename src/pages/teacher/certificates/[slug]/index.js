@@ -1,5 +1,6 @@
 "use client";
 
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
 import CertificateDetails from "@/components/CertificateDetails/CertificateDetails";
 import { users } from "@/constants/data";
 import Head from "next/head";
@@ -14,6 +15,7 @@ export default function index() {
       <Head>
         <title>Certificate details</title>
       </Head>
+      <TeacherTokenCheck />
       <div className="add_certificates">
         <CertificateDetails use={users.TEACHER} slug={slug} />
       </div>

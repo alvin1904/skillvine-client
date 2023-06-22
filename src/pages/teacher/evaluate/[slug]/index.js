@@ -18,11 +18,12 @@ import Head from "next/head";
 import TeacherNavbar from "@/layouts/TeacherNavbar";
 import searchCertificates from "@/utils/search";
 import { addToLS } from "@/utils/LSOperations";
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
 
 export default function index() {
   const router = useRouter();
   const { slug } = router.query;
-  addToLS("student_session", slug)
+  addToLS("student_session", slug);
   const { throwError } = useCustomError();
   const { loading, fetchData } = useAxiosCaller();
   const [certificates, setCertificates] = useState([]);
@@ -58,6 +59,7 @@ export default function index() {
 
   return (
     <>
+      <TeacherTokenCheck />
       <TeacherNavbar
         name={certificates?.name}
         ktuId={certificates?.ktuId}
@@ -83,7 +85,7 @@ export default function index() {
             {loading ? (
               <>
                 <br></br>
-                <Loadings color="var(--clr-primary-300)"/>
+                <Loadings color="var(--clr-primary-300)" />
               </>
             ) : (
               certificates &&

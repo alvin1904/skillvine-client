@@ -87,3 +87,17 @@
     grid-template-columns: repeat(2, auto);
   }
 }
+.load_again_btn {
+  all: unset;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transform: translateY(200%);
+  background-color: var(--clr-primary-200);
+  color: var(--clr-light);
+  height: 30px;
+  width: 200px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}

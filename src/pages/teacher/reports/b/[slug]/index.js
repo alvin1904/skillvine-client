@@ -1,3 +1,4 @@
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
 import ReportComponent from "@/componentsAdmin/ReportGenerator/ReportComponent";
 import useReport from "@/utils/useReport";
 import Head from "next/head";
@@ -16,6 +17,7 @@ function index() {
       <Head>
         <title>BatchWise Report Generation</title>
       </Head>
+      <TeacherTokenCheck />
       <ReportComponent
         target={targets.BATCH}
         status={status}

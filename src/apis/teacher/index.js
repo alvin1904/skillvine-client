@@ -20,6 +20,10 @@ export const verifyToken = () =>
 export const logoutAPI = () =>
   api.post("/auth/teachers/logout", { withCredentials: true });
 
+// TEACHER
+export const getTeacherAPI = () =>
+  api.get("/users/teachers", { withCredentials: true });
+
 //   BATCHES
 export const getBatchesAPI = () =>
   api.get("/teachers/batches", { withCredentials: true });

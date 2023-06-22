@@ -1,9 +1,12 @@
-"use client"
+"use client";
 
-import React from 'react'
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
+import React from "react";
 
 export default function dashboard() {
   return (
-    <div>dashboard</div>
-  )
+    <div>
+      <TeacherTokenCheck /> dashboard
+    </div>
+  );
 }

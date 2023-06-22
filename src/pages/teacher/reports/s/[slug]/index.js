@@ -1,3 +1,4 @@
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
 import ReportComponent from "@/componentsAdmin/ReportGenerator/ReportComponent";
 import useReport from "@/utils/useReport";
 import Head from "next/head";
@@ -17,6 +18,7 @@ function index() {
       <Head>
         <title>StudentWise Report Generation</title>
       </Head>
+      <TeacherTokenCheck />
       <ReportComponent
         target={targets.STUDENT}
         status={status}

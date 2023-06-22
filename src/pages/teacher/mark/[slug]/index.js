@@ -1,5 +1,6 @@
 "use client";
 
+import TeacherTokenCheck from "@/apis/TeacherTokenCheck";
 import MarkCertificate from "@/componentsAdmin/MarkCertificate/MarkCertificate";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -13,6 +14,7 @@ export default function mark() {
       <Head>
         <title>Mark certificate</title>
       </Head>
+      <TeacherTokenCheck />
       <MarkCertificate slug={slug}/>
     </>
   );
