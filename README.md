@@ -71,6 +71,6 @@ Upon logging in, you will be redirected to your personalized dashboard.
 - [Sreerag M](https://github.com/sm0483)
 <br/>
 S6 CSE<br/>
-Govt. Engg. College of Tech. (APJAKTU)<br/>
+Govt. Engg. College (APJAKTU)<br/>
 Kottayam, Kerala, India<br/>
 
