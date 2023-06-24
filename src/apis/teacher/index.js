@@ -16,7 +16,7 @@ export const setHead = (token) => {
 // INDEX
 export const apiLive = () => api.get("/");
 export const verifyToken = () =>
-  api.get("/auth/teachers/get-access-token", { withCredentials: true });
+  api.get("/auth/teachers/access-tokens", { withCredentials: true });
 export const logoutAPI = () =>
   api.post("/auth/teachers/logout", { withCredentials: true });
 

@@ -25,7 +25,7 @@ export const setHead = (token) => {
 export const updateUserAPI = (data) =>
   api.patch("/users/students", data, { withCredentials: true });
 export const verifyToken = () =>
-  api.get("/auth/students/get-access-token", { withCredentials: true });
+  api.get("/auth/students/access-tokens", { withCredentials: true });
 export const logoutAPI = () =>
   api.post("/auth/students/logout", { withCredentials: true });
 export const fetchProfileAPI = () =>
