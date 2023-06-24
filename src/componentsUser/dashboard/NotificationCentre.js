@@ -21,7 +21,11 @@ export default function NotificationCentre() {
         console.log("Token not present");
       else throwError(response.status);
     };
-    getNotification();
+
+    const timeout = setTimeout(() => {
+      getNotification();
+    }, 1000);
+    return () => clearTimeout(timeout);
   }, []);
 
   const clearNotifications = async () => {
