@@ -16,7 +16,9 @@ const StudentTokenCheck = () => {
       try {
         const response = await fetchProfileAPI();
         if (response.status === 200) console.log("ok");
-        else fallbackAction();
+        else if (response.status === 401 || response.status === 403)
+          fallbackAction();
+        else console.log("Token present, some other error");
       } catch (error) {
         console.log(error);
         fallbackAction();
