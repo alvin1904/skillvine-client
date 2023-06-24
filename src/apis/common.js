@@ -2,6 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "/api/v1",
+  // baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -25,5 +26,5 @@ export const getPointsAPI = (
   year
 ) =>
   api.get(
-    `/category/points?activity=${activity}&level=${level}&leadership-level=${leadershipLevel}&is-leadership=${isLeadership}`
+    `/category/points?activity=${encodeURIComponent(activity)}&level=${level}&leadership-level=${leadershipLevel}&is-leadership=${isLeadership}`
   );

@@ -2,10 +2,11 @@ import { addTTokenToLink, getFromLS } from "@/utils/LSOperations";
 import InfoDisplay from "./InfoDisplay";
 import styles from "@/styles/teacher/MarkCertificate.module.css";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function CertificateMarkInfo({ data }) {
   const openLink = () => window.open(addTTokenToLink(data.certificateUrl));
-  const router = useRouter()
+  const router = useRouter();
   const handleBack = () => {
     const token = "student_session";
     const session = getFromLS(token);
@@ -21,6 +22,13 @@ export default function CertificateMarkInfo({ data }) {
         <InfoDisplay label={"Date of event"} data={data.participationDate} />
         <InfoDisplay label={"Duration of event"} data={data.duration} />
         <InfoDisplay label={"Description"} data={data.certificateDescription} />
+        <br></br>
+        <Image
+          src="/assets/levelhint.png"
+          alt="level"
+          width="300"
+          height="100"
+        />
         <br></br>
         <h1>Certificate Link</h1>
         <br></br>

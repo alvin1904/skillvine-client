@@ -3,6 +3,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "/api/v1",
+  // baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -10,6 +11,7 @@ const api = axios.create({
 });
 const api2 = axios.create({
   baseURL: "/api/v1",
+  // baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   headers: {
     Accept: "application/json",
     "Content-Type": "multipart/form-data",

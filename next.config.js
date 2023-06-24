@@ -7,6 +7,7 @@ const nextConfig = {
     appDir: false,
   },
   async rewrites() {
+    console.log("process.env.NEXT_PUBLIC_BASE_URL", process.env.NEXT_PUBLIC_BASE_URL)
     return [
       {
         source: "/api/v1/:path*",

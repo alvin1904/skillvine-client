@@ -24,19 +24,21 @@
 .back,
 .downloadBtn {
   all: unset;
-  background-color: var(--clr-light);
-  border: 1px dashed var(--clr-border);
   padding: 5px 30px;
   cursor: pointer;
   transition: 250ms all ease-in-out;
   border-radius: 5px;
   text-align: center;
+  background-color: var(--clr-border);
+  color: var(--clr-light);
+  border: 1px dashed var(--clr-light);
 }
 .back:hover,
 .btn:hover,
 .downloadBtn:hover {
-  background-color: var(--clr-border);
-  color: var(--clr-light);
+  background-color: var(--clr-light);
+  border: 1px dashed var(--clr-border);
+  color: var(--clr-border);
 }
 .back {
   position: absolute;
@@ -52,7 +54,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 1.15rem;
+  font-size: 1rem;
 }
 .downloadBtn {
   width: 150px;

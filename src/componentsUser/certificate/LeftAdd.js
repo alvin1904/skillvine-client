@@ -24,11 +24,11 @@ export default function LeftAdd({ ref1, ref2, ref3, ref4 }) {
           ref={ref3}
         />
       </div>
-
+{/* 
       <div className={styles.dateEnd}>
         <label>End Date</label>
         <input type="date" className={styles.end_date} />
-      </div>
+      </div> */}
 
       <div className={styles.eventDescription}>
         <label>Remarks</label>

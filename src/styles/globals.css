@@ -405,10 +405,9 @@ body {
   display: grid;
   grid-auto-flow: column;
 }
-.tNavbar_button {
+.tNavbar_button { 
   font-size: 1rem;
   font-weight: 500;
-  color: var(--clr-primary-250);
   border: none;
   outline: none;
   padding: 6px 15px;
@@ -416,10 +415,12 @@ body {
   border: 2px solid var(--clr-primary-250);
   outline: none;
   transition: all 100ms ease-in-out;
-}
-.tNavbar_button:hover {
   color: var(--clr-primary-100);
   background-color: var(--clr-primary-250);
+}
+.tNavbar_button:hover {
+  background-color: var(--clr-primary-100);
+  color: var(--clr-primary-250);
 }
 .tNavbar_buttons {
   gap: 1rem;

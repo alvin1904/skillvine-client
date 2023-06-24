@@ -4,6 +4,7 @@ import { levels2, levels3, yearOfStudy } from "@/constants/data";
 import DropDown2 from "@/components/DropDown2";
 import Loadings from "@/components/Loading/Loadings";
 import { removeArrayDuplicates } from "@/utils/removeArrayDuplicates";
+import Image from "next/image";
 
 export default function RightEdit({
   ref5,
@@ -70,7 +71,7 @@ export default function RightEdit({
         optionSelected={levelsSelected}
         setOptionSelected={setLevelsSelected}
       />
-
+      <Image src="/assets/levelhint.png" alt="level" width="300" height="100" />
       <div className={styles.fileUploader}>
         <label
           onClick={() => {

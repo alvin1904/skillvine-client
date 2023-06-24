@@ -3,6 +3,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "/api/v1",
+  // baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import DropDown2 from "@/components/DropDown2";
 import { removeArrayDuplicates } from "@/utils/removeArrayDuplicates";
 import { levels3 } from "@/constants/data";
 import Loadings from "@/components/Loading/Loadings";
+import Image from "next/image";
 
 export default function RightAdd({
   ref5,
@@ -71,6 +72,7 @@ export default function RightAdd({
         optionSelected={levelsSelected}
         setOptionSelected={setLevelsSelected}
       />
+      <Image src="/assets/levelhint.png" alt="level" width="300" height="100"/>
 
       <div className={styles.fileUploader}>
         <label

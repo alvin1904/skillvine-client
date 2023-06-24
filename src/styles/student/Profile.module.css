@@ -64,7 +64,8 @@
   font-weight: 300;
 }
 .delete {
-  color: var(--clr-primary-400);
+  background-color: var(--clr-primary-400);
+  color: var(--clr-light);
   border-radius: 5px;
   margin: 0.5rem 0rem;
   padding: 0.5rem 2rem;
@@ -76,8 +77,8 @@
   transition: 100ms ease-in-out;
 }
 .delete:hover {
-  background-color: var(--clr-primary-400);
-  color: var(--clr-light);
+  background-color: var(--clr-light);
+  color: var(--clr-primary-400);
 }
 @media (max-width: 768px) {
   .profile_dp {

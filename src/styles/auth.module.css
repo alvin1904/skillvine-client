@@ -56,9 +56,6 @@
   margin-top: 10px;
 }
 .login_btn {
-  background-color: var(--clr-light);
-  color: var(--clr-primary-400);
-  border: 1px dashed var(--clr-primary-300);
   border-radius: 8px;
   min-width: 85%;
   min-height: 50px;
@@ -68,12 +65,16 @@
   grid-template-columns: auto 1fr;
   align-items: center;
   padding: 0 35px;
-}
-.login_btn:hover {
   color: var(--clr-light);
   background-color: var(--clr-primary-400);
+  border: none;
 }
-.login_btn:hover > .login_btn_section > svg > path {
+.login_btn:hover {
+  background-color: var(--clr-light);
+  color: var(--clr-primary-400);
+  border: 1px dashed var(--clr-primary-300);
+}
+.login_btn:not(:hover) > .login_btn_section > svg > path {
   fill: white;
 }
 @media (max-width: 768px) {
